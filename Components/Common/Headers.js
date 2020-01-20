@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BackgroundColors } from '../styles/Colors';
+import { BackgroundColors } from '../styles/Styles';
 
 class AuthHeader extends React.Component {
     render() { 
@@ -9,9 +9,9 @@ class AuthHeader extends React.Component {
             <View style={styles.container}>
                 <View style={[styles.leftCircle, BackgroundColors.purple]}></View>
                 <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} colors={['#A72C7D', '#E4101C', '#F9B100']} style={styles.rightCircle}></LinearGradient>
-                <Text style={styles.title}>{this.props.title || "Hello, connectez-vous à votre espace."}</Text>
+                <Text style={styles.title}>{this.props.title}</Text>
                 <View style={styles.icon}>
-                    <Image source={""}/>
+                    <Image source={require('../../assets/folder.png')}/>
                 </View>
             </View>
         );
@@ -60,6 +60,9 @@ const styles = StyleSheet.create({
         top: 200,
         backgroundColor: '#fff',
         borderRadius: 50,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     title: {
         position: 'absolute',

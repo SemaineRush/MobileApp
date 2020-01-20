@@ -9,15 +9,14 @@ class Login extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <View>
-                <AuthHeader />
-                <Text>Login</Text>
+                <AuthHeader title="Hello, connectez-vous à votre espace." />
                 <PrimaryButton
                     onPress={ () => null }
                     style={ BackgroundColors.darkPurple }
                     title={ 'Connexion' }
                 />
                 <LinkButton
-                    onPress={ () => null }
+                    onPress={ () => navigate('Register') }
                     title={ 'Inscrivez-vous.' }
                 />
             </View>
