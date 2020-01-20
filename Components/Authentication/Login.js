@@ -1,19 +1,22 @@
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
+import { PrimaryButton } from '../Common/Button';
+import { BackgroundColors } from './../styles/Colors'
 
 class Login extends React.Component {
     render() {
-        const {navigate} = this.props.navigation;
+        const { navigate } = this.props.navigation;
         return (
             <View>
                 <Text>Login</Text>
-                <Button
-                    title="Register"
-                    onPress={() => navigate('Register')}
+                <PrimaryButton
+                    onPress={ () => null }
+                    style={ BackgroundColors.darkPurple }
+                    title={ 'Click Me' }
                 />
             </View>
         );
     }
 }
- 
+
 export default Login;
