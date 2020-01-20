@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import { PrimaryButton } from '../Common/Button';
-import { BackgroundColors } from './../styles/Colors'
+import { View, Text } from 'react-native';
+import { PrimaryButton, LinkButton } from '../Common/Button';
+import { BackgroundColors } from '../styles/Styles';
 
 class Login extends React.Component {
     render() {
@@ -12,7 +12,11 @@ class Login extends React.Component {
                 <PrimaryButton
                     onPress={ () => null }
                     style={ BackgroundColors.darkPurple }
-                    title={ 'Click Me' }
+                    title={ 'Connexion' }
+                />
+                <LinkButton
+                    onPress={ () => null }
+                    title={ 'Inscrivez-vous.' }
                 />
             </View>
         );

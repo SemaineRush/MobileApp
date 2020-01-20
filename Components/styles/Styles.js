@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native';
+
+export let { height, width } = Dimensions.get('window');
 
 export const Colors = StyleSheet.create({
   black: {
