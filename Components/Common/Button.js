@@ -4,21 +4,25 @@ import { width } from './../styles/Styles';
 
 const styles = StyleSheet.create({
   primaryButton: {
-    width: (width * 80) / 100,
+    width: width - 30,
     height: 52,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 5
+    borderRadius: 26,
+    padding: 15
   },
   primaryButtonText: {
     color: 'white',
     fontWeight: '600',
     fontSize: 17
   },
+  primaryButtonDisable: {
+    opacity: 0.33
+  },
   linkButtonText: {
-    color: '#444',
+    color: '#615AD3',
     textDecorationLine: 'underline',
-    fontWeight: '300',
+    fontWeight: '600',
     fontSize: 15
   }
 });
@@ -26,8 +30,13 @@ const styles = StyleSheet.create({
 export const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ [props.style, styles.primaryButton] }
+  disabled={ props.disabled }
 >
-  <Text style={ styles.primaryButtonText }>{ props.title }</Text>
+  <Text
+    style={ [styles.primaryButtonText, props.disabled ? styles.primaryButtonDisable : null] }
+  >
+    { props.title }
+  </Text>
 </TouchableOpacity>;
 
 export const LinkButton = props => <TouchableOpacity
