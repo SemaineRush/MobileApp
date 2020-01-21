@@ -11,7 +11,7 @@ class Login extends React.Component {
             <View>
                 <AuthHeader title="Hello, connectez-vous à votre espace." />
                 <PrimaryButton
-                    onPress={ () => null }
+                    onPress={ () => navigate('CandidatesList') }
                     style={ BackgroundColors.darkPurple }
                     title={ 'Connexion' }
                 />

@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BackgroundColors } from '../styles/Styles';
+import { BackgroundColors, width } from '../styles/Styles';
 
 class AuthHeader extends React.Component {
     render() { 
         return (
-            <View style={styles.container}>
-                <View style={[styles.leftCircle, BackgroundColors.purple]}></View>
-                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} colors={['#A72C7D', '#E4101C', '#F9B100']} style={styles.rightCircle}></LinearGradient>
-                <Text style={styles.title}>{this.props.title}</Text>
-                <View style={styles.icon}>
+            <View style={authStyles.container}>
+                <View style={[authStyles.leftCircle, BackgroundColors.purple]}></View>
+                <LinearGradient start={[0.0, 0.5]} end={[1.0, 0.5]} colors={['#A72C7D', '#E4101C', '#F9B100']} style={authStyles.rightCircle}></LinearGradient>
+                <Text style={authStyles.title}>{this.props.title}</Text>
+                <View style={authStyles.icon}>
                     <Image source={require('../../assets/folder.png')}/>
                 </View>
             </View>
@@ -18,7 +18,7 @@ class AuthHeader extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
+const authStyles = StyleSheet.create({
     container: {
         position: 'relative',
         height: 350,
@@ -74,5 +74,27 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     }
 })
+
+class RoundPurpleBG extends React.Component {
+    render() { 
+        return (
+            <View style={purpleBgStyles.purpleBg}></View>
+        );
+    }
+}
+
+let roundWidth = width * 3
+
+const purpleBgStyles = StyleSheet.create({
+    purpleBg: {
+        backgroundColor: '#828AF7',
+        position: 'absolute',
+        top: -roundWidth + 120,
+        left: -roundWidth / 2 + 140,
+        width: roundWidth,
+        height: roundWidth,
+        borderRadius: roundWidth / 2,
+    } 
+})
  
-export { AuthHeader };
+export { AuthHeader, RoundPurpleBG };
