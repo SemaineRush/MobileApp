@@ -5,20 +5,23 @@ export let { height, width } = Dimensions.get('window');
 
 export const Colors = StyleSheet.create({
   black: {
-    color: '#444444'
+    color: '#2C2C54'
+  },
+  white: {
+    color: '#FFFFFF'
   },
   lightGrey: {
-    color: '#E6E6E6'
+    color: '#D4D4DD'
   },
   grey: {
-    color: '#B2B2B2'
-  },
-  green: {
-    color: '#4EC72A'
+    color: '#888888'
   }
 })
 
 export const BackgroundColors = StyleSheet.create({
+  white: {
+    backgroundColor: '#FFFFFF'
+  },
   purple: {
     backgroundColor: '#A72C7D'
   },
@@ -26,9 +29,15 @@ export const BackgroundColors = StyleSheet.create({
     backgroundColor: '#862766'
   },
   red: {
-    backgroundColor: '#E4101C'
+    backgroundColor: '#FD475E'
   },
   yellow: {
-    backgroundColor: '#F9B100'
+    backgroundColor: '#FFD02A'
+  },
+  blue: {
+    backgroundColor: '#605DD3'
+  },
+  green: {
+    backgroundColor: '#00FF00'
   }
 })

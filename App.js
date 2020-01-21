@@ -11,7 +11,7 @@ const MainNavigator = createStackNavigator({
   CandidatesList: { screen: CandidatesList}
 }, {
   defaultNavigationOptions: {
-    header: null
+    headerShown: false
   }
 });
 const App = createAppContainer(MainNavigator);
