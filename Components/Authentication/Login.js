@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
-import { PrimaryButton, LinkButton } from '../Common/Button';
-import CustomInput from '../Common/Input';
-import { Colors, BackgroundColors, height } from '../styles/Styles';
+import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
+import { Password, Email } from '../Common/Input';
+import { Colors, BackgroundColors, height } from '../Styles/Styles';
 import { AuthHeader } from '../Common/Headers';
-import Footer from '../Common/Footer'
+import Footer from '../Common/Footer';
 
 const styles = StyleSheet.create({
     view: {
         flex: 1,
         minHeight: height,
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        alignItems: "center"
     },
     container: {
         flexDirection: 'column',
@@ -20,43 +21,47 @@ const styles = StyleSheet.create({
     }
 });
 
-class Login extends React.Component {
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <ScrollView contentContainerStyle={ [BackgroundColors.white, styles.view] }>
-                <AuthHeader title='Hello, connectez-vous à votre espace.' />
-                <View style={ styles.container }>
-                    <CustomInput label='adresse email' />
-                    <CustomInput
-                        label='mot de passe'
-                        security={ true }
-                        icon='visibility'
-                        iconColor='#888888'
-                        press={ true }
-                    />
-                    <PrimaryButton
-                        onPress={ () => navigate('CandidatesList') }
-                        style={ BackgroundColors.blue }
-                        title={ 'Connexion' }
-                        disabled={ false }
-                    />
-                </View>
-                <View style={ styles.container }>
-                    <Text
-                        style={ Colors.grey }
-                    >
-                        Vous n’avez pas de compte ?
+const Login = () => {
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+
+    return <ScrollView contentContainerStyle={ [BackgroundColors.white, styles.view] }>
+        <AuthHeader title='Hello, connectez-vous à votre espace.' />
+        <View style={ styles.container }>
+            <Email
+                reference={ emailRef }
+                email={ email }
+                setEmail={ setEmail }
+            />
+            <Password reference={ passwordRef } password={ password } setPassword={ setPassword } />
+            <PrimaryButton
+                onPress={ () => null }
+                title={ 'Connexion' }
+                disabled={ false }
+            />
+        </View>
+        <SecondaryButton
+            onPress={ () => null }
+            style={ BackgroundColors.blue }
+            title={ 'Se connecter avec Office365' }
+            disabled={ false }
+        />
+        <View style={ styles.container }>
+            <Text
+                style={ Colors.grey }
+            >
+                Vous n’avez pas de compte ?
                     </Text>
-                    <LinkButton
-                        onPress={ () => navigate('Register') }
-                        title={ 'Inscrivez-vous.' }
-                    />
-                </View>
-                <Footer />
-            </ScrollView>
-        );
-    }
-}
+            <LinkButton
+                onPress={ () => props.navigate('Register') }
+                title={ 'Inscrivez-vous.' }
+            />
+        </View>
+        <Footer />
+    </ScrollView>
+};
 
 export default Login;

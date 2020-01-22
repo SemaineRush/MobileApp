@@ -35,20 +35,20 @@ class CandidatesList extends React.Component {
         return (
             <ScrollView>
                 <RoundPurpleBG />
-                <View style={styles.headerContainer}>
-                    <Text style={styles.title}>Élections de SUP'Internet</Text>
-                    <Text style={styles.subtitle}>BDE 2020</Text>
+                <View style={ styles.headerContainer }>
+                    <Text style={ styles.title }>Élections de SUP'Internet</Text>
+                    <Text style={ styles.subtitle }>BDE 2020</Text>
                 </View>
-                <View style={styles.bodyContainer}>
-                    {this.state.candidates.map(user => {
-                        return <View style={[styles.candidate, {backgroundColor: user.color}]}>
-                            <View style={{paddingTop: 20}}>
-                                <Text style={{color: 'white', fontWeight: 'bold'}}>{user.firstname} {user.lastname.toUpperCase()}</Text>
-                                <Text style={{color: 'white'}}>{user.title}</Text>
+                <View style={ styles.bodyContainer }>
+                    { this.state.candidates.map(user => {
+                        return <View style={ [styles.candidate, { backgroundColor: user.color }] }>
+                            <View style={ { paddingTop: 20 } }>
+                                <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
+                                <Text style={ { color: 'white' } }>{ user.title }</Text>
                             </View>
-                            <Image source={{uri: user.picture}} style={{width: (width*0.8) / 2, height: 150, alignSelf: 'flex-end'}}/>
+                            <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
                         </View>
-                    })}
+                    }) }
                 </View>
                 <PrimaryButton title="Voter" onPress={() => navigate('Vote')} style={ BackgroundColors.blue }/>
             </ScrollView>
