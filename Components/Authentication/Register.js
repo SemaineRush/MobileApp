@@ -4,8 +4,8 @@ import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { Password, Email, Name } from '../Common/Input';
 import { Colors, BackgroundColors, height, width } from '../Styles/Styles';
 import { AuthHeader } from '../Common/Headers';
-import Footer from '../Common/Footer';
-import examples from './../Utils/examples'
+import { Footer } from '../Common/Footer';
+import examples from './../Utils/examples';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
@@ -37,6 +37,7 @@ const Register = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validation, setValidation] = useState('')
+    const { navigate } = props.navigation
 
     return <ScrollView>
         <View style={ [BackgroundColors.white, styles.view] }>
@@ -91,7 +92,7 @@ const Register = props => {
                     Vous avez déjà de compte ?
                 </Text>
                 <LinkButton
-                    onPress={ () => props.navigation.navigate('Login') }
+                    onPress={ () => navigate('Login') }
                     title={ 'Connectez-vous.' }
                 />
             </View>

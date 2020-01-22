@@ -52,7 +52,7 @@ const CheckError = (field, value) => {
   }
 };
 
-export const Name = props => {
+const Name = props => {
   const [error, setError] = useState(undefined)
 
   return <Input
@@ -70,7 +70,7 @@ export const Name = props => {
   />
 };
 
-export const Email = props => {
+const Email = props => {
   const [error, setError] = useState(undefined)
 
   return <Input
@@ -88,7 +88,7 @@ export const Email = props => {
   />
 };
 
-export const Password = props => {
+const Password = props => {
   const [error, setError] = useState(undefined)
   const [security, setSecurity] = useState(true)
 
@@ -127,3 +127,5 @@ export const Password = props => {
     </> }
   />
 };
+
+export { Name, Email, Password };

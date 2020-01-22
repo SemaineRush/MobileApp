@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
 export const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
-  style={ [BackgroundColors.blue, styles.primaryButton] }
+  style={ [BackgroundColors.blue, styles.primaryButton, props.style] }
   disabled={ props.disabled }
 >
   <Text
