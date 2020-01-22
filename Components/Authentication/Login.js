@@ -4,7 +4,7 @@ import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { Password, Email } from '../Common/Input';
 import { Colors, BackgroundColors, height } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
-import Footer from '../Common/Footer';
+import { Footer } from '../Common/Footer';
 
 const styles = StyleSheet.create({
     view: {

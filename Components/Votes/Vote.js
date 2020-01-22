@@ -4,6 +4,7 @@ import { width, BackgroundColors, height, Colors, Texts } from '../styles/Styles
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { CheckBox } from 'react-native-elements';
+import { VoteFooter } from '../Common/Footer'
 
 class Vote extends React.Component {
     constructor(props) {
@@ -36,31 +37,25 @@ class Vote extends React.Component {
         return (
             <ScrollView>
                 <View style={{minHeight: height, position: 'relative'}}>
-                    <TouchableOpacity style={styles.back} color={Colors.grey} onPress={() => navigate('CandidatesList')}>
-                        <Text style={{fontWeight: 'bold', fontSize: 23}}>{"<"}</Text>
+                    <TouchableOpacity style={styles.back} color={Colors.black.color} onPress={() => navigate('CandidatesList')}>
+                        <Text style={Texts.h1}>{"<"}</Text>
                     </TouchableOpacity>
                     <View style={styles.header}>
                         <Text style={[styles.mainTitle, Texts.h1]}>À votre vote</Text>
                         <Text style={[styles.subtitle, Texts.p]}>Seléctionnez votre candidat parmi les différents votes possibles ci-dessous :</Text>
                     </View>
-                    <View style={styles.bodyContainer}>
-                        {this.state.candidates.map(user => {
-                            return <TouchableOpacity key={user.id} style={styles.candidate} onPress={() => this.setState({checked: user.id})}>
-                                <Image source={{uri: user.picture}} style={styles.candidateImg}/>
-                                <Text style={[Texts.h1, styles.name]}>{user.firstname} {user.lastname.toUpperCase()}</Text>
-                                <CheckBox
-                                    right
-                                    iconRight
-                                    checkedIcon='dot-circle-o'
-                                    uncheckedIcon='circle-o'
-                                    checked={this.state.checked === user.id}
-                                    size={30}
-                                    onPress={() => this.setState({checked: user.id})}
-                                    checkedColor={BackgroundColors.blue.backgroundColor}
-                                />
-                            </TouchableOpacity>
-                        })}
-                    </View>
+                    <ScrollView>
+                        <View style={styles.bodyContainer}>
+                            {this.state.candidates.map(user => {
+                                return <TouchableOpacity key={user.id} style={styles.candidate} onPress={() => this.setState({checked: user.id})}>
+                                    <Image source={{uri: user.picture}} style={styles.candidateImg}/>
+                                    <Text style={[Texts.h1, styles.name]}>{user.firstname} {user.lastname.toUpperCase()}</Text>
+                                    <View style={this.state.checked === user.id ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
+                                </TouchableOpacity>
+                            })}
+                        </View>
+                    </ScrollView>
+                    <VoteFooter style={styles.footer} />
                     <PrimaryButton title="Voter" style={[styles.vote, BackgroundColors.blue]}/>
                 </View>
             </ScrollView>
@@ -96,6 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         marginTop: 10,
         paddingLeft: 10,
+        paddingRight: 10,
         borderRadius: 5,
         shadowColor: '#000',
         shadowOpacity: 0.07,
@@ -121,7 +117,27 @@ const styles = StyleSheet.create({
         bottom: 50,
         left: 15,
         marginTop: 50,
-    }
+    },
+    checkbox: {
+        width: 22,
+        height: 22,
+        borderRadius: 11,
+        borderWidth: 1,
+        borderColor: Colors.grey.color,
+        paddingLeft: 10,
+    },
+    unchecked: {
+        backgroundColor: '#fff',
+    },
+    checked: {
+        backgroundColor: BackgroundColors.blue.backgroundColor,
+    },
+    footer: {
+        width: width*0.9,
+        position: 'absolute',
+        bottom: 120,
+        left: width*0.05
+    },
 })
 
 export default Vote;
