@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { width } from './../styles/Styles';
+import { BackgroundColors, width } from '../Styles/Styles';
 
 const styles = StyleSheet.create({
   primaryButton: {
@@ -13,27 +13,58 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: 'white',
-    fontWeight: '600',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 17
   },
   primaryButtonDisable: {
     opacity: 0.33
   },
+  secondaryButton: {
+    width: width - 34,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 26,
+    borderColor: '#605DD3',
+    borderWidth: 2,
+    padding: 15
+  },
+  secondaryButtonText: {
+    color: '#605DD3',
+    fontFamily: 'Montserrat-Bold',
+    fontSize: 17
+  },
+  secondaryButtonDisable: {
+    opacity: 0.33
+  },
   linkButtonText: {
     color: '#615AD3',
+    fontFamily: 'Montserrat-Bold',
     textDecorationLine: 'underline',
-    fontWeight: '600',
-    fontSize: 15
+    fontSize: 15,
+    marginVertical: 5
   }
 });
 
 export const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
-  style={ [props.style, styles.primaryButton] }
+  style={ [BackgroundColors.blue, styles.primaryButton] }
   disabled={ props.disabled }
 >
   <Text
     style={ [styles.primaryButtonText, props.disabled ? styles.primaryButtonDisable : null] }
+  >
+    { props.title }
+  </Text>
+</TouchableOpacity>;
+
+export const SecondaryButton = props => <TouchableOpacity
+  onPress={ props.onPress }
+  style={ [BackgroundColors.white, styles.secondaryButton] }
+  disabled={ props.disabled }
+>
+  <Text
+    style={ [styles.secondaryButtonText, props.disabled ? styles.secondaryButtonDisable : null] }
   >
     { props.title }
   </Text>
