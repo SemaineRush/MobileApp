@@ -11,7 +11,7 @@ import CandidatesList from './Components/Votes/CandidatesList';
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
-  CandidatesList: { screen: CandidatesList}
+  CandidatesList: { screen: CandidatesList }
 }, {
   defaultNavigationOptions: {
     headerShown: false
@@ -49,14 +49,12 @@ export default class App extends React.Component {
         />
       );
     }
-    else {
-      return (
-        <View style={ styles.container }>
-          <ActivityIndicator />
-          <StatusBar barStyle="default" />
-        </View>
-      );
-    }
+    return (
+      <View style={ styles.container }>
+        <ActivityIndicator />
+        <StatusBar barStyle="default" />
+      </View>
+    )
   }
 }
 

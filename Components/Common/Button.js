@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     borderRadius: 26,
     borderColor: '#605DD3',
     borderWidth: 2,
-    padding: 15
+    padding: 15,
+    marginTop: 30
   },
   secondaryButtonText: {
     color: '#605DD3',

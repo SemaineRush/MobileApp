@@ -4,13 +4,16 @@ import { Colors } from '../Styles/Styles';
 
 const styles = StyleSheet.create({
   footer: {
+    flex: 1,
     alignItems: 'center',
-    paddingVertical: 15,
+    marginVertical: 15
   },
   footerText: {
     fontSize: 14,
     fontFamily: 'Montserrat-Regular',
-    color: '#888888'
+    color: '#888888',
+    position: 'absolute',
+    bottom: 0
   }
 })
 
