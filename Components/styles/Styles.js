@@ -15,7 +15,13 @@ export const Colors = StyleSheet.create({
   },
   grey: {
     color: '#888888'
-  }
+  },
+  purple: {
+    color: '#A72C7D'
+  },
+  darkPurple: {
+    color: '#862766'
+  },
 })
 
 export const BackgroundColors = StyleSheet.create({

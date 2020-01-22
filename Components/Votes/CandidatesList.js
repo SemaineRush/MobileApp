@@ -1,11 +1,11 @@
-import React, { useReducer } from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
-import { width } from '../styles/Styles';
-import { RoundGradientBg, RoundPurpleBG } from '../Common/Headers';
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import { width, BackgroundColors } from '../styles/Styles';
+import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBar } from 'react-native-elements';
+import { PrimaryButton } from '../Common/Button';
 
-class Login extends React.Component {
+class CandidatesList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -50,7 +50,7 @@ class Login extends React.Component {
                         </View>
                     })}
                 </View>
-                <Button title="Voter"/>
+                <PrimaryButton title="Voter" onPress={() => navigate('Vote')} style={ BackgroundColors.blue }/>
             </ScrollView>
         );
     }
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login;
+export default CandidatesList;

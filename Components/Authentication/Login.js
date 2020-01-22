@@ -36,7 +36,7 @@ class Login extends React.Component {
                         press={ true }
                     />
                     <PrimaryButton
-                        onPress={ () => null }
+                        onPress={ () => navigate('CandidatesList') }
                         style={ BackgroundColors.blue }
                         title={ 'Connexion' }
                         disabled={ false }
