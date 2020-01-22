@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { BackgroundColors, width, height } from './../Styles/Styles';
+import { BackgroundColors, width, height } from './../styles/Styles';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { isEmail } from 'validator';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { width, BackgroundColors } from '../styles/Styles';
+import { width, BackgroundColors, height } from '../styles/Styles';
 import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
@@ -35,22 +35,24 @@ class CandidatesList extends React.Component {
         return (
             <ScrollView>
                 <RoundPurpleBG />
-                <View style={ styles.headerContainer }>
-                    <Text style={ styles.title }>Élections de SUP'Internet</Text>
-                    <Text style={ styles.subtitle }>BDE 2020</Text>
-                </View>
-                <View style={ styles.bodyContainer }>
-                    { this.state.candidates.map(user => {
-                        return <View style={ [styles.candidate, { backgroundColor: user.color }] }>
-                            <View style={ { paddingTop: 20 } }>
-                                <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
-                                <Text style={ { color: 'white' } }>{ user.title }</Text>
+                <View style={{minHeight: height}}>
+                    <View style={ styles.headerContainer }>
+                        <Text style={ styles.title }>Élections de SUP'Internet</Text>
+                        <Text style={ styles.subtitle }>BDE 2020</Text>
+                    </View>
+                    <View style={ styles.bodyContainer }>
+                        { this.state.candidates.map(user => {
+                            return <View key={user.id} style={ [styles.candidate, { backgroundColor: user.color }] }>
+                                <View style={ { paddingTop: 20 } }>
+                                    <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
+                                    <Text style={ { color: 'white' } }>{ user.title }</Text>
+                                </View>
+                                <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
                             </View>
-                            <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
-                        </View>
-                    }) }
+                        }) }
+                    </View>
+                    <PrimaryButton title="Voter" onPress={() => navigate('Vote')} style={[BackgroundColors.blue, styles.vote]}/>
                 </View>
-                <PrimaryButton title="Voter" onPress={() => navigate('Vote')} style={ BackgroundColors.blue }/>
             </ScrollView>
         );
     }
@@ -96,6 +98,12 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
     },
     button: {
+        marginTop: 50,
+    },
+    vote: {
+        position: 'absolute',
+        bottom: 50,
+        left: 15,
         marginTop: 50,
     }
 })

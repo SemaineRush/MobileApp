@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Colors } from '../Styles/Styles';
+import { Colors } from '../styles/Styles';
 
 const styles = StyleSheet.create({
   footer: {

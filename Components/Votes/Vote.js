@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
-import { width, BackgroundColors, height, Colors } from '../styles/Styles';
+import { width, BackgroundColors, height, Colors, Texts } from '../styles/Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { CheckBox } from 'react-native-elements';
@@ -35,19 +35,19 @@ class Vote extends React.Component {
         const { navigate } = this.props.navigation;
         return (
             <ScrollView>
-                <View style={{minHeight: height}}>
+                <View style={{minHeight: height, position: 'relative'}}>
                     <TouchableOpacity style={styles.back} color={Colors.grey} onPress={() => navigate('CandidatesList')}>
                         <Text style={{fontWeight: 'bold', fontSize: 23}}>{"<"}</Text>
                     </TouchableOpacity>
                     <View style={styles.header}>
-                        <Text style={styles.mainTitle}>À votre vote</Text>
-                        <Text style={styles.subtitle}>Seléctionnez votre candidat parmi les différents votes possibles ci-dessous :</Text>
+                        <Text style={[styles.mainTitle, Texts.h1]}>À votre vote</Text>
+                        <Text style={[styles.subtitle, Texts.p]}>Seléctionnez votre candidat parmi les différents votes possibles ci-dessous :</Text>
                     </View>
                     <View style={styles.bodyContainer}>
                         {this.state.candidates.map(user => {
-                            return <TouchableOpacity style={styles.candidate} onPress={() => this.setState({checked: user.id})}>
+                            return <TouchableOpacity key={user.id} style={styles.candidate} onPress={() => this.setState({checked: user.id})}>
                                 <Image source={{uri: user.picture}} style={styles.candidateImg}/>
-                                <Text style={styles.name}>{user.firstname} {user.lastname.toUpperCase()}</Text>
+                                <Text style={[Texts.h1, styles.name]}>{user.firstname} {user.lastname.toUpperCase()}</Text>
                                 <CheckBox
                                     right
                                     iconRight
@@ -61,7 +61,7 @@ class Vote extends React.Component {
                             </TouchableOpacity>
                         })}
                     </View>
-                    <PrimaryButton title="Voter" style={[BackgroundColors.blue, styles.vote]}/>
+                    <PrimaryButton title="Voter" style={[styles.vote, BackgroundColors.blue]}/>
                 </View>
             </ScrollView>
         );
@@ -80,14 +80,9 @@ const styles = StyleSheet.create({
         marginLeft: width * 0.05,
     },
     mainTitle: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: Colors.black.color,
         marginBottom: 10
     },
     subtitle: {
-        fontSize: 18,
-        color: Colors.grey.color,
         marginBottom: 15,
     },
     candidate: {
@@ -119,13 +114,13 @@ const styles = StyleSheet.create({
     name: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: Colors.grey.color
+        color: "#444444"
     },
     vote: {
-        marginTop: 50,
-        alignSelf: "center",
         position: 'absolute',
         bottom: 50,
+        left: 15,
+        marginTop: 50,
     }
 })
 

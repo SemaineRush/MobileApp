@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { Password, Email } from '../Common/Input';
-import { Colors, BackgroundColors, height } from '../Styles/Styles';
+import { Colors, BackgroundColors, height } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import Footer from '../Common/Footer';
 
@@ -21,11 +21,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const Login = () => {
+const Login = props => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const { navigate } = props.navigation;
 
 
     return <ScrollView contentContainerStyle={ [BackgroundColors.white, styles.view] }>
@@ -38,7 +39,7 @@ const Login = () => {
             />
             <Password reference={ passwordRef } password={ password } setPassword={ setPassword } />
             <PrimaryButton
-                onPress={ () => null }
+                onPress={ () => navigate('CandidatesList') }
                 title={ 'Connexion' }
                 disabled={ false }
             />

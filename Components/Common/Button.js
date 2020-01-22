@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { BackgroundColors, width } from '../Styles/Styles';
+import { BackgroundColors, width } from '../styles/Styles';
 
 const styles = StyleSheet.create({
   primaryButton: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
 export const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
-  style={ [BackgroundColors.blue, styles.primaryButton] }
+  style={ [BackgroundColors.blue, styles.primaryButton, props.style] }
   disabled={ props.disabled }
 >
   <Text
