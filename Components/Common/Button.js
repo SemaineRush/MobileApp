@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const PrimaryButton = props => <TouchableOpacity
+const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ [BackgroundColors.blue, styles.primaryButton, props.style] }
   disabled={ props.disabled }
@@ -59,7 +59,7 @@ export const PrimaryButton = props => <TouchableOpacity
   </Text>
 </TouchableOpacity>;
 
-export const SecondaryButton = props => <TouchableOpacity
+const SecondaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ [BackgroundColors.white, styles.secondaryButton] }
   disabled={ props.disabled }
@@ -71,9 +71,11 @@ export const SecondaryButton = props => <TouchableOpacity
   </Text>
 </TouchableOpacity>;
 
-export const LinkButton = props => <TouchableOpacity
+const LinkButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ props.style }
 >
   <Text style={ styles.linkButtonText }>{ props.title }</Text>
 </TouchableOpacity>;
+
+export { PrimaryButton, SecondaryButton, LinkButton }

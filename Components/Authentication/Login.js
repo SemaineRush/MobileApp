@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 45,
+        paddingVertical: 35,
     }
 });
 
@@ -61,6 +61,10 @@ const Login = props => {
                 />
             </View>
             <View style={ [styles.container, { marginBottom: 45 }] }>
+                <LinkButton
+                    onPress={ () => navigate('Recover') }
+                    title={ 'Mot de passe oublié ?' }
+                />
                 <Text style={ Colors.grey }>
                     Vous n’avez pas de compte ?
                 </Text>

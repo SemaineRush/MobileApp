@@ -17,7 +17,6 @@ class AuthHeader extends React.Component {
 
 const authStyles = StyleSheet.create({
     container: {
-        flex: 1,
         position: 'relative',
         height: 300,
         display: "flex",
@@ -77,8 +76,8 @@ const authStyles = StyleSheet.create({
         height: width * 3,
         borderRadius: width * 3 / 2,
         backgroundColor: '#828AF7',
-        top: -(width * 2) - 305,
-        left: -(width) - (width / 2.5)
+        top: -(width * 2) - 325,
+        right: -(width * 1.2)
     }
 })
 

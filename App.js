@@ -6,12 +6,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
+import Recover from './Components/Authentication/Recover';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
+  Recover: { screen: Recover },
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote }
 }, {
