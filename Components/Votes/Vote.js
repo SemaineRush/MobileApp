@@ -1,16 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, findNodeHandle } from 'react-native';
 import { width, BackgroundColors, height, Colors, Texts } from '../styles/Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
-import { CheckBox } from 'react-native-elements';
 import { VoteFooter } from '../Common/Footer'
+import ConfirmVote from '../Alerts/ConfirmVote';
 
 class Vote extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checked: 0,
+            checked: -1,
             candidates: [
                 {
                     id: 1,
@@ -28,14 +28,26 @@ class Vote extends React.Component {
                     color: "#BBB",
                     title: "Suis-moi, je te fuis !",
                 }
-            ]
+            ],
+            alertVisible: 0,
+            viewRef: null
         };
+    }
+
+    hideAlert() {
+        this.setState({ alertVisible: 0 });
+    }
+
+    validateVote() {
+        let candidate = this.state.candidates[this.state.checked]
+        this.setState({ alertVisible: 0 }, () => this.setState({ alertVisible: 1 }));
     }
 
     render() {
         const { navigate } = this.props.navigation;
         return (
             <ScrollView>
+                {this.state.alertVisible === 1 && <ConfirmVote visible={true} hideAlert={() => this.hideAlert()} validateVote={() => this.validateVote()} candidate={this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname} />}
                 <View style={{minHeight: height, position: 'relative'}}>
                     <TouchableOpacity style={styles.back} color={Colors.black.color} onPress={() => navigate('CandidatesList')}>
                         <Text style={Texts.h1}>{"<"}</Text>
@@ -46,17 +58,17 @@ class Vote extends React.Component {
                     </View>
                     <ScrollView>
                         <View style={styles.bodyContainer}>
-                            {this.state.candidates.map(user => {
-                                return <TouchableOpacity key={user.id} style={styles.candidate} onPress={() => this.setState({checked: user.id})}>
+                            {this.state.candidates.map((user, index) => {
+                                return <TouchableOpacity key={user.id} style={styles.candidate} onPress={() => this.setState({checked: index})}>
                                     <Image source={{uri: user.picture}} style={styles.candidateImg}/>
                                     <Text style={[Texts.h1, styles.name]}>{user.firstname} {user.lastname.toUpperCase()}</Text>
-                                    <View style={this.state.checked === user.id ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
+                                    <View style={this.state.checked === index ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
                                 </TouchableOpacity>
                             })}
                         </View>
                     </ScrollView>
                     <VoteFooter style={styles.footer} />
-                    <PrimaryButton title="Voter" style={[styles.vote, BackgroundColors.blue]}/>
+                    <PrimaryButton title="Voter" style={[styles.vote, BackgroundColors.blue]} onPress={() => this.setState({ alertVisible: 1 })} disabled={this.state.checked === -1}/>
                 </View>
             </ScrollView>
         );
@@ -95,9 +107,9 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         shadowColor: '#000',
         shadowOpacity: 0.07,
-        shadowRadius: 50,
+        shadowRadius: 2,
         shadowOffset: {
-            width: 2,
+            width: 0,
             height: 2,
         },
     },
