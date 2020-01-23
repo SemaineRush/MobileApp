@@ -40,6 +40,9 @@ export const BackgroundColors = StyleSheet.create({
   yellow: {
     backgroundColor: '#FFD02A'
   },
+  lightBlue: {
+    backgroundColor: '#8387FF'
+  },
   blue: {
     backgroundColor: '#605DD3'
   },
