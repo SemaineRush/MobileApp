@@ -2,11 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { AsyncStorage, StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { CheckError, Password, Email } from '../Common/Input';
-import { Colors, BackgroundColors, height, width } from '../Styles/Styles';
+import { Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
-import examples from './../Utils/examples';
-import { api } from '../Helpers/api';
+import examples from '../utils/examples';
+import { api } from '../helpers/api';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 

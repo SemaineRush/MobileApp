@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
-import { width, BackgroundColors, height, Colors, Texts } from '../Styles/Styles';
+import { width, BackgroundColors, height, Colors, Texts } from '../styles/Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { VoteFooter } from '../Common/Footer'

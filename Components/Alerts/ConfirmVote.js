@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Modal } from 'react-native';
-import { Texts, height, width, BackgroundColors } from '../Styles/Styles';
+import { Texts, height, width, BackgroundColors } from '../styles/Styles';
 import { PrimaryButton } from '../Common/Button';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons'
