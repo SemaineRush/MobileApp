@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 26,
-    padding: 15
+    padding: 15,
   },
   primaryButtonText: {
     color: 'white',

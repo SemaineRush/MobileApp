@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
+import { AsyncStorage, StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
