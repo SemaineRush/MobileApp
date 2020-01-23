@@ -1,18 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { BackgroundColors, width } from '../styles/Styles';
+import { Texts, width } from '../Styles/Styles';
 
 class AuthHeader extends React.Component {
     render() {
         return (
             <View style={ authStyles.container }>
-                <View style={ [authStyles.leftCircle, BackgroundColors.purple] }></View>
-                <LinearGradient start={ [0.0, 0.5] } end={ [1.0, 0.5] } colors={ ['#A72C7D', '#E4101C', '#F9B100'] } style={ authStyles.rightCircle }></LinearGradient>
-                <Text style={ authStyles.title }>{ this.props.title }</Text>
-                <View style={ authStyles.icon }>
-                    <Image source={ require('../../assets/folder.png') } />
-                </View>
+                <View style={ authStyles.purpleCircle } />
+                <Text style={ [Texts.h1, authStyles.title, authStyles.f30, authStyles.uppercase] }>{ this.props.h1 }</Text>
+                <Text style={ [Texts.h2, authStyles.title] }>{ this.props.h2 }</Text>
             </View>
         );
     }
@@ -21,10 +18,11 @@ class AuthHeader extends React.Component {
 const authStyles = StyleSheet.create({
     container: {
         position: 'relative',
-        height: 350,
+        height: 300,
         display: "flex",
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop: 70
     },
     leftCircle: {
         width: 280,
@@ -64,14 +62,22 @@ const authStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    title: {
-        position: 'absolute',
-        top: 70,
-        width: 280,
-        color: "#fff",
-        fontSize: 23,
+    f30: {
+        fontSize: 30,
         zIndex: 10,
         textAlign: 'center',
+    },
+    uppercase: {
+        textTransform: 'uppercase'
+    },
+    purpleCircle: {
+        position: "absolute",
+        width: width * 3,
+        height: width * 3,
+        borderRadius: width * 3 / 2,
+        backgroundColor: '#828AF7',
+        top: -(width * 2) - 325,
+        right: -(width * 1.2)
     }
 })
 

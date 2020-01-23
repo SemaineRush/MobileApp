@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { width, BackgroundColors, height } from '../styles/Styles';
+import { width, BackgroundColors, height } from '../Styles/Styles';
 import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
@@ -35,14 +35,14 @@ class CandidatesList extends React.Component {
         return (
             <ScrollView>
                 <RoundPurpleBG />
-                <View style={{minHeight: height}}>
+                <View style={ { minHeight: height } }>
                     <View style={ styles.headerContainer }>
                         <Text style={ styles.title }>Élections de SUP'Internet</Text>
                         <Text style={ styles.subtitle }>BDE 2020</Text>
                     </View>
                     <View style={ styles.bodyContainer }>
                         { this.state.candidates.map(user => {
-                            return <View key={user.id} style={ [styles.candidate, { backgroundColor: user.color }] }>
+                            return <View key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] }>
                                 <View style={ { paddingTop: 20 } }>
                                     <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
                                     <Text style={ { color: 'white' } }>{ user.title }</Text>
@@ -51,7 +51,7 @@ class CandidatesList extends React.Component {
                             </View>
                         }) }
                     </View>
-                    <PrimaryButton title="Voter" onPress={() => navigate('Vote')} style={[BackgroundColors.blue, styles.vote]}/>
+                    <PrimaryButton title="Voter" onPress={ () => navigate('Vote') } style={ [BackgroundColors.blue, styles.vote] } />
                 </View>
             </ScrollView>
         );

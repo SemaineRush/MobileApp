@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { BackgroundColors, width } from '../styles/Styles';
+import { BackgroundColors, width } from '../Styles/Styles';
 
 const styles = StyleSheet.create({
   primaryButton: {
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
     borderRadius: 26,
     borderColor: '#605DD3',
     borderWidth: 2,
-    padding: 15
+    padding: 15,
+    marginTop: 30
   },
   secondaryButtonText: {
     color: '#605DD3',
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const PrimaryButton = props => <TouchableOpacity
+const PrimaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ [BackgroundColors.blue, styles.primaryButton, props.style] }
   disabled={ props.disabled }
@@ -58,7 +59,7 @@ export const PrimaryButton = props => <TouchableOpacity
   </Text>
 </TouchableOpacity>;
 
-export const SecondaryButton = props => <TouchableOpacity
+const SecondaryButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ [BackgroundColors.white, styles.secondaryButton] }
   disabled={ props.disabled }
@@ -70,9 +71,11 @@ export const SecondaryButton = props => <TouchableOpacity
   </Text>
 </TouchableOpacity>;
 
-export const LinkButton = props => <TouchableOpacity
+const LinkButton = props => <TouchableOpacity
   onPress={ props.onPress }
   style={ props.style }
 >
   <Text style={ styles.linkButtonText }>{ props.title }</Text>
 </TouchableOpacity>;
+
+export { PrimaryButton, SecondaryButton, LinkButton }

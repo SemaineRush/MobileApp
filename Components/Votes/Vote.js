@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, findNodeHandle } from 'react-native';
-import { width, BackgroundColors, height, Colors, Texts } from '../styles/Styles';
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from 'react-native';
+import { width, BackgroundColors, height, Colors, Texts } from '../Styles/Styles';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { VoteFooter } from '../Common/Footer'
@@ -52,9 +52,9 @@ class Vote extends React.Component {
                     <TouchableOpacity style={styles.back} color={Colors.black.color} onPress={() => navigate('CandidatesList')}>
                         <Text style={Texts.h1}>{"<"}</Text>
                     </TouchableOpacity>
-                    <View style={styles.header}>
-                        <Text style={[styles.mainTitle, Texts.h1]}>À votre vote</Text>
-                        <Text style={[styles.subtitle, Texts.p]}>Seléctionnez votre candidat parmi les différents votes possibles ci-dessous :</Text>
+                    <View style={ styles.header }>
+                        <Text style={ [styles.mainTitle, Texts.h1] }>À votre vote</Text>
+                        <Text style={ [styles.subtitle, Texts.p] }>Seléctionnez votre candidat parmi les différents votes possibles ci-dessous :</Text>
                     </View>
                     <ScrollView>
                         <View style={styles.bodyContainer}>
@@ -64,7 +64,7 @@ class Vote extends React.Component {
                                     <Text style={[Texts.h1, styles.name]}>{user.firstname} {user.lastname.toUpperCase()}</Text>
                                     <View style={this.state.checked === index ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
                                 </TouchableOpacity>
-                            })}
+                            }) }
                         </View>
                     </ScrollView>
                     <VoteFooter style={styles.footer} />
@@ -78,12 +78,12 @@ class Vote extends React.Component {
 const styles = StyleSheet.create({
     back: {
         position: 'absolute',
-        left: width*0.05,
+        left: width * 0.05,
         top: 30,
     },
     header: {
         marginTop: 120,
-        width: width*0.9,
+        width: width * 0.9,
         marginLeft: width * 0.05,
     },
     mainTitle: {
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
         backgroundColor: BackgroundColors.blue.backgroundColor,
     },
     footer: {
-        width: width*0.9,
+        width: width * 0.9,
         position: 'absolute',
         bottom: 120,
-        left: width*0.05
+        left: width * 0.05
     },
 })
 

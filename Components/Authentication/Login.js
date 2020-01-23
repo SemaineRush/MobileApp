@@ -2,22 +2,28 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { Password, Email } from '../Common/Input';
-import { Colors, BackgroundColors, height } from '../styles/Styles';
+import { Colors, BackgroundColors, height, width } from '../Styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
+import examples from './../Utils/examples';
+
+const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
 const styles = StyleSheet.create({
     view: {
         flex: 1,
+        width: width,
         minHeight: height,
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        alignItems: "center"
+        alignItems: 'center',
+        position: 'relative'
     },
     container: {
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 35,
     }
 });
 
@@ -26,42 +32,49 @@ const Login = props => {
     const passwordRef = useRef();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const { navigate } = props.navigation;
+    const { navigate } = props.navigation
 
-
-    return <ScrollView contentContainerStyle={ [BackgroundColors.white, styles.view] }>
-        <AuthHeader title='Hello, connectez-vous à votre espace.' />
-        <View style={ styles.container }>
-            <Email
-                reference={ emailRef }
-                email={ email }
-                setEmail={ setEmail }
-            />
-            <Password reference={ passwordRef } password={ password } setPassword={ setPassword } />
-            <PrimaryButton
-                onPress={ () => navigate('CandidatesList') }
-                title={ 'Connexion' }
-                disabled={ false }
-            />
+    return <ScrollView>
+        <View style={ [BackgroundColors.white, styles.view] }>
+            <AuthHeader h1='Bienvenue' h2='connectez-vous' />
+            <View style={ [styles.container, { paddingTop: 0 }] }>
+                <Email
+                    placeholder={ placeholder.email }
+                    reference={ emailRef }
+                    email={ email }
+                    setEmail={ setEmail }
+                />
+                <Password
+                    label='mot de passe'
+                    placeholder={ 'UnMotDePasse86' }
+                    reference={ passwordRef }
+                    password={ password }
+                    setPassword={ setPassword }
+                />
+                <PrimaryButton
+                    onPress={ () => null }
+                    title={ 'Connexion' }
+                />
+                <SecondaryButton
+                    onPress={ () => null }
+                    title={ 'Se connecter avec Office365' }
+                />
+            </View>
+            <View style={ [styles.container, { marginBottom: 45 }] }>
+                <LinkButton
+                    onPress={ () => navigate('Recover') }
+                    title={ 'Mot de passe oublié ?' }
+                />
+                <Text style={ Colors.grey }>
+                    Vous n’avez pas de compte ?
+                </Text>
+                <LinkButton
+                    onPress={ () => navigate('Register') }
+                    title={ 'Inscrivez-vous.' }
+                />
+            </View>
+            <Footer />
         </View>
-        <SecondaryButton
-            onPress={ () => null }
-            style={ BackgroundColors.blue }
-            title={ 'Se connecter avec Office365' }
-            disabled={ false }
-        />
-        <View style={ styles.container }>
-            <Text
-                style={ Colors.grey }
-            >
-                Vous n’avez pas de compte ?
-                    </Text>
-            <LinkButton
-                onPress={ () => props.navigate('Register') }
-                title={ 'Inscrivez-vous.' }
-            />
-        </View>
-        <Footer />
     </ScrollView>
 };
 
