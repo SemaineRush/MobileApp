@@ -14,13 +14,13 @@ import Candidate from './Components/Candidates/Candidate'
 import BlueCandidate from './Components/Candidates/Blue';
 
 const MainNavigator = createStackNavigator({
-  Candidate: { screen: Candidate },
   Login: { screen: Login },
   Register: { screen: Register },
   Recover: { screen: Recover },
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
   Blue: { screen: BlueCandidate },
+  Candidate: { screen: Candidate },
 }, {
   defaultNavigationOptions: {
     headerShown: false
