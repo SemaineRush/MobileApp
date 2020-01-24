@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
-import { BackgroundColors, width } from '../Styles/Styles';
+import { BackgroundColors, width } from '../styles/Styles';
 
 const styles = StyleSheet.create({
   primaryButton: {

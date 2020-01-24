@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, Dimensions } from 'react-native';
 
 export let { height, width } = Dimensions.get('window');
@@ -45,6 +44,9 @@ export const BackgroundColors = StyleSheet.create({
   },
   green: {
     backgroundColor: '#00FF00'
+  },
+  black: {
+    backgroundColor: '#2C2C54'
   }
 })
 

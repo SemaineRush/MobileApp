@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { BackgroundColors, Texts } from '../Styles/Styles';
+import { BackgroundColors, Texts } from '../styles/Styles';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 const styles = StyleSheet.create({

@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, LinkButton } from '../Common/Button';
 import { Email } from '../Common/Input';
-import { Texts, Colors, BackgroundColors, height, width } from '../Styles/Styles';
+import { Texts, Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
 import examples from './../Utils/examples';

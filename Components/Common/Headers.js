@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Texts, width } from '../Styles/Styles';
+import { Texts, width } from '../styles/Styles';
 
 class AuthHeader extends React.Component {
     render() {

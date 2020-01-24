@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BackgroundColors, width } from './../Styles/Styles';
+import { BackgroundColors, width } from './../styles/Styles';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { isEmail } from 'validator';

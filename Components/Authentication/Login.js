@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { Password, Email } from '../Common/Input';
-import { Colors, BackgroundColors, height, width } from '../Styles/Styles';
+import { Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
 import examples from './../Utils/examples';
@@ -52,7 +52,7 @@ const Login = props => {
                     setPassword={ setPassword }
                 />
                 <PrimaryButton
-                    onPress={ () => null }
+                    onPress={ () => navigate("Blue") }
                     title={ 'Connexion' }
                 />
                 <SecondaryButton
