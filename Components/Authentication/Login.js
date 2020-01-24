@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
-import { Password, Email } from '../Common/Input';
+import { CheckError, Password, Email } from '../Common/Input';
 import { Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
-import examples from './../Utils/examples';
+import examples from '../utils/examples';
+import { api, getToken, storeToken } from '../helpers/api';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
@@ -27,12 +28,44 @@ const styles = StyleSheet.create({
     }
 });
 
+const sendForm = (email, password, setStateRequest) => {
+
+    if (!CheckError("Email", email) && !CheckError("Password", password)) {
+        api.post('/auth/login', {
+            username: email,
+            password: password
+        }).then(json => {
+            console.log('Success')
+
+            storeToken(json.data.token)
+
+            setStateRequest("Success")
+        }).catch((err) => {
+            console.log(err)
+            setStateRequest("FAILURE")
+        })
+    } else {
+        setStateRequest("FAILURE")
+    }
+};
+
 const Login = props => {
     const emailRef = useRef();
     const passwordRef = useRef();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [stateRequest, setStateRequest] = useState(null)
     const { navigate } = props.navigation
+
+    useEffect(() => {
+        if (stateRequest === 'Success' && (getToken() !== 'none' || getToken() !== null)) {
+            navigate('CandidatesList')
+        }
+
+        setTimeout(() => {
+            setStateRequest(null)
+        }, 3000);
+    }, [stateRequest])
 
     return <ScrollView>
         <View style={ [BackgroundColors.white, styles.view] }>
@@ -52,8 +85,15 @@ const Login = props => {
                     setPassword={ setPassword }
                 />
                 <PrimaryButton
-                    onPress={ () => navigate("Blue") }
+                    onPress={ () => sendForm(email, password, setStateRequest) }
                     title={ 'Connexion' }
+                    style={
+                        stateRequest === 'FAILURE'
+                            ? BackgroundColors.red
+                            : stateRequest === 'Success'
+                                ? BackgroundColors.green
+                                : null
+                    }
                 />
                 <SecondaryButton
                     onPress={ () => null }

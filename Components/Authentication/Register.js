@@ -1,11 +1,12 @@
-import React, { useState, useRef } from 'react';
-import { StyleSheet, ScrollView, View, Text } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { AsyncStorage, StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
-import { Password, Email, Name } from '../Common/Input';
+import { Password, Email, Name, CheckError } from '../Common/Input';
 import { Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
-import examples from './../Utils/examples';
+import examples from '../utils/examples';
+import { api } from '../helpers/api';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
@@ -26,6 +27,26 @@ const styles = StyleSheet.create({
     }
 });
 
+const sendForm = (givenName, surname, email, password, validation, setStateRequest) => {
+
+    if (!CheckError("Name", givenName) && !CheckError("Name", surname) && !CheckError("Email", email) && !CheckError("Password", password) && password === validation) {
+        api.post('/auth/register', {
+            firstname: givenName,
+            lastname: surname,
+            email: email,
+            password: password
+        }).then(() => {
+            console.log('Success')
+            setStateRequest("Success")
+        }).catch((err) => {
+            console.log(err)
+            setStateRequest("FAILURE")
+        })
+    } else {
+        setStateRequest("FAILURE")
+    }
+};
+
 const Register = props => {
     const givenNameRef = useRef();
     const surnameRef = useRef();
@@ -37,7 +58,18 @@ const Register = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [validation, setValidation] = useState('')
+    const [stateRequest, setStateRequest] = useState(null)
     const { navigate } = props.navigation
+
+    useEffect(() => {
+        setTimeout(() => {
+            if (stateRequest === 'Success') {
+                navigate('Login')
+            } else {
+                setStateRequest(null)
+            }
+        }, 3000);
+    }, [stateRequest])
 
     return <ScrollView>
         <View style={ [BackgroundColors.white, styles.view] }>
@@ -79,8 +111,15 @@ const Register = props => {
                     confirmPassword={ password }
                 />
                 <PrimaryButton
-                    onPress={ () => null }
-                    title={ 'Connexion' }
+                    onPress={ () => sendForm(givenName, surname, email, password, validation, setStateRequest) }
+                    title={ 'Inscription' }
+                    style={
+                        stateRequest === 'FAILURE'
+                            ? BackgroundColors.red
+                            : stateRequest === 'Success'
+                                ? BackgroundColors.green
+                                : null
+                    }
                 />
                 <SecondaryButton
                     onPress={ () => null }

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { BackgroundColors, width } from './../styles/Styles';
+import { BackgroundColors, width } from '../styles/Styles';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { isEmail } from 'validator';
-import regex from './../Utils/regex';
+import regex from '../utils/regex';
 
 const styles = StyleSheet.create({
   label: {
@@ -118,14 +118,21 @@ const Password = props => {
         : error === true
           ? <View style={ [styles.dot, styles.secondAdornment, BackgroundColors.red] } />
           : null }
-      <Icon
-        name={ 'visibility' }
-        size={ 24 }
-        color={ '#888888' }
-        onPress={ () => setSecurity(!security) }
-      />
+      { security
+        ? <Icon
+          name={ 'visibility-off' }
+          size={ 24 }
+          color={ '#888888' }
+          onPress={ () => setSecurity(!security) }
+        />
+        : <Icon
+          name={ 'visibility' }
+          size={ 24 }
+          color={ '#888888' }
+          onPress={ () => setSecurity(!security) }
+        /> }
     </> }
   />
 };
 
-export { Name, Email, Password };
+export { Name, Email, Password, CheckError };

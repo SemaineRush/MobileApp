@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, StatusBar, ActivityIndicator } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
+import Splash from './Components/Common/Splash';
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Recover from './Components/Authentication/Recover';
@@ -58,8 +59,7 @@ export default class App extends React.Component {
     }
     return (
       <View style={ styles.container }>
-        <ActivityIndicator />
-        <StatusBar barStyle="default" />
+        <Splash />
       </View>
     )
   }

@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, LinkButton } from '../Common/Button';
-import { Email } from '../Common/Input';
+import { CheckError, Email } from '../Common/Input';
 import { Texts, Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
-import examples from './../Utils/examples';
+import examples from '../utils/examples';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
@@ -31,10 +31,34 @@ const styles = StyleSheet.create({
   }
 });
 
+const sendForm = (email, setStateRequest) => {
+
+  if (!CheckError("Email", email)) {
+    api.post('/auth/reset', {
+      username: email
+    }).then(() => {
+      console.log('Success')
+      setStateRequest("Success")
+    }).catch((err) => {
+      console.log(err)
+      setStateRequest("FAILURE")
+    })
+  } else {
+    setStateRequest("FAILURE")
+  }
+};
+
 const Recover = props => {
   const emailRef = useRef();
   const [email, setEmail] = useState('')
+  const [stateRequest, setStateRequest] = useState(null)
   const { navigate } = props.navigation
+
+  useEffect(() => {
+    setTimeout(() => {
+      setStateRequest(null)
+    }, 3000);
+  }, [stateRequest])
 
   return <ScrollView>
     <View style={ [BackgroundColors.white, styles.view] }>
@@ -55,7 +79,7 @@ const Recover = props => {
           setEmail={ setEmail }
         />
         <PrimaryButton
-          onPress={ () => null }
+          onPress={ () => sendForm(email, stateRequest) }
           title={ 'Valider' }
         />
       </View>
