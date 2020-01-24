@@ -11,6 +11,7 @@ import Recover from './Components/Authentication/Recover';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 import Candidate from './Components/Candidates/Candidate'
+import BlueCandidate from './Components/Candidates/Blue';
 
 const MainNavigator = createStackNavigator({
   Candidate: { screen: Candidate },
@@ -19,6 +20,7 @@ const MainNavigator = createStackNavigator({
   Recover: { screen: Recover },
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
+  Blue: { screen: BlueCandidate },
 }, {
   defaultNavigationOptions: {
     headerShown: false
@@ -37,7 +39,12 @@ export default class App extends React.Component {
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
       'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
-      'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf')
+      'Montserrat-Light': require('./assets/fonts/Montserrat-Light.ttf'),
+      'Montserrat-SemiBoldItalic': require('./assets/fonts/Montserrat-SemiBoldItalic.ttf'),
+      'RobotoMono-Bold': require('./assets/fonts/RobotoMono-Bold.ttf'),
+      'RobotoMono-Medium': require('./assets/fonts/RobotoMono-Medium.ttf'),
+      'RobotoMono-Regular': require('./assets/fonts/RobotoMono-Regular.ttf'),
+      'RobotoMono-Light': require('./assets/fonts/RobotoMono-Light.ttf'),
     });
 
     this.setState({ assetsLoaded: true });

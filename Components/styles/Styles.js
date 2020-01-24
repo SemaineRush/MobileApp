@@ -55,6 +55,9 @@ const BackgroundColors = StyleSheet.create({
   },
   green: {
     backgroundColor: '#00FF00'
+  },
+  black: {
+    backgroundColor: '#2C2C54'
   }
 })
 

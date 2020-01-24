@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { VoteFooter } from '../Common/Footer'
 import ConfirmVote from '../Alerts/ConfirmVote';
+import { Icon } from 'react-native-vector-icons/MaterialIcons';
 
 class Vote extends React.Component {
     constructor(props) {
@@ -50,7 +51,7 @@ class Vote extends React.Component {
                 {this.state.alertVisible === 1 && <ConfirmVote visible={true} hideAlert={() => this.hideAlert()} validateVote={() => this.validateVote()} candidate={this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname} />}
                 <View style={{minHeight: height, position: 'relative'}}>
                     <TouchableOpacity style={styles.back} color={Colors.black.color} onPress={() => navigate('CandidatesList')}>
-                        <Text style={Texts.h1}>{"<"}</Text>
+                        <Icon name="chevron-left" color={BackgroundColors.black.backgroundColor} size={30} />
                     </TouchableOpacity>
                     <View style={ styles.header }>
                         <Text style={ [styles.mainTitle, Texts.h1] }>À votre vote</Text>
