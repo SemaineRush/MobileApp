@@ -29,17 +29,17 @@ const styles = StyleSheet.create({
   secondTop: {
     zIndex: 1,
     bottom: width * 1.45,
-    right: -(width - (width * 0.4))
+    right: -(width - (width * 0.2))
   },
   rightBottom: {
     zIndex: 2,
     top: width,
-    right: -(width * 2.45)
+    right: -(width * 2.7)
   },
   leftBottom: {
     zIndex: 1,
     top: width * 1.1,
-    right: -(width - (width * 1.2))
+    right: 0
   }
 })
 const Splash = () => <View style={ styles.container }>
