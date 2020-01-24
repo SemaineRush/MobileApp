@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { width, BackgroundColors, height } from '../styles/Styles';
 import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -42,13 +42,13 @@ class CandidatesList extends React.Component {
                     </View>
                     <View style={ styles.bodyContainer }>
                         { this.state.candidates.map(user => {
-                            return <View key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] }>
+                            return <TouchableOpacity key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] } onPress={ () => navigate('Candidate', { candidateId: user.id }) }>
                                 <View style={ { paddingTop: 20 } }>
                                     <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
                                     <Text style={ { color: 'white' } }>{ user.title }</Text>
                                 </View>
                                 <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
-                            </View>
+                            </TouchableOpacity>
                         }) }
                     </View>
                     <PrimaryButton title="Voter" onPress={ () => navigate('Vote') } style={ [BackgroundColors.blue, styles.vote] } />

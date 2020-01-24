@@ -10,13 +10,15 @@ import Register from './Components/Authentication/Register';
 import Recover from './Components/Authentication/Recover';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
+import Candidate from './Components/Candidates/Candidate'
 
 const MainNavigator = createStackNavigator({
+  Candidate: { screen: Candidate },
   Login: { screen: Login },
   Register: { screen: Register },
   Recover: { screen: Recover },
   CandidatesList: { screen: CandidatesList },
-  Vote: { screen: Vote }
+  Vote: { screen: Vote },
 }, {
   defaultNavigationOptions: {
     headerShown: false
