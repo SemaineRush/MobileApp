@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { AsyncStorage, StyleSheet, ScrollView, View, Text } from 'react-native';
+import { StyleSheet, ScrollView, View, Text } from 'react-native';
 import { PrimaryButton, SecondaryButton, LinkButton } from '../Common/Button';
 import { CheckError, Password, Email } from '../Common/Input';
 import { Colors, BackgroundColors, height, width } from '../styles/Styles';

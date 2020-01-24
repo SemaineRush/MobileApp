@@ -1,6 +1,7 @@
 import axios from 'react-native-axios';
+import { AsyncStorage } from 'react-native';
 
-export const api = axios.create({
+const api = axios.create({
     baseURL: 'https://testsamheroku.herokuapp.com/api',
     timeOut: 1000,
     headers: {
@@ -8,7 +9,7 @@ export const api = axios.create({
     }
 });
 
-export const getToken = async () => {
+const getToken = async () => {
     let token = ''
     try {
         token = await AsyncStorage.getItem("token") || 'none'
@@ -19,10 +20,12 @@ export const getToken = async () => {
     return token
 }
 
-export const storeToken = async token => {
+const storeToken = async token => {
     try {
         await AsyncStorage.setItem("token", token);
     } catch (error) {
         console.log("Something went wrong", error);
     }
 }
+
+export { api, storeToken, getToken };
