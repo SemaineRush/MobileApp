@@ -17,6 +17,7 @@ class CandidatesList extends React.Component {
                     picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
                     color: "#555",
                     title: "Le monde est à nous !",
+                    page: 'Comic'
                 },
                 {
                     id: 2,
@@ -25,6 +26,7 @@ class CandidatesList extends React.Component {
                     picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
                     color: "#BBB",
                     title: "Suis-moi, je te fuis !",
+                    page: 'Blue'
                 }
             ]
         };
@@ -42,7 +44,7 @@ class CandidatesList extends React.Component {
                     </View>
                     <View style={ styles.bodyContainer }>
                         { this.state.candidates.map(user => {
-                            return <TouchableOpacity key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] } onPress={ () => navigate('Candidate', { candidateId: user.id }) }>
+                            return <TouchableOpacity key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] } onPress={ () => navigate('Candidate', { candidatePage: user.page }) }>
                                 <View style={ { paddingTop: 20 } }>
                                     <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
                                     <Text style={ { color: 'white' } }>{ user.title }</Text>

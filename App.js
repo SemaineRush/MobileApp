@@ -1,26 +1,23 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Image } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import Splash from './Components/Common/Splash';
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Recover from './Components/Authentication/Recover';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
-import Candidate from './Components/Candidates/Candidate'
-import BlueCandidate from './Components/Candidates/Blue';
+import Candidate from './Components/Candidates/Candidate';
 
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
   Recover: { screen: Recover },
   CandidatesList: { screen: CandidatesList },
-  Vote: { screen: Vote },
-  Blue: { screen: BlueCandidate },
   Candidate: { screen: Candidate },
+  Vote: { screen: Vote },
 }, {
   defaultNavigationOptions: {
     headerShown: false
@@ -65,7 +62,8 @@ export default class App extends React.Component {
     }
     return (
       <View style={ styles.container }>
-        <Splash />
+        <Image style={ styles.image } source={ require('./assets/logo.png') } />
+        <ActivityIndicator size="large" color="#0000ff" />
       </View>
     )
   }
@@ -78,5 +76,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  image: {
+    resizeMode: 'contain',
+    width: '50%'
+  }
 });
 

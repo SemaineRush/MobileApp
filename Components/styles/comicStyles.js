@@ -1,8 +1,15 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { height, width } from './Styles';
+import { withTheme } from 'react-native-elements';
 
 export const styles = StyleSheet.create({
+  wrap: {
+    flex: 1
+  },
+  page: {
+    height: height * 0.95
+  },
   view: {
     position: 'relative',
   },
@@ -111,9 +118,11 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
+    zIndex: 3
   },
   videoLink: {
-    resizeMode: 'contain',
+    resizeMode: 'center',
     height: 200,
     width: width * 1.5
   },
@@ -194,7 +203,8 @@ export const styles = StyleSheet.create({
   footer: {
     position: 'relative',
     width: width,
-    height: 300
+    height: 300,
+    backgroundColor: '#DCADFF',
   },
   mediaBubbleContainer: {
     position: 'absolute',
@@ -210,7 +220,7 @@ export const styles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   mediaBubble: {
-    resizeMode: 'contain',
+    resizeMode: 'center',
     width: width * 0.6,
     position: 'absolute',
     top: -155,
@@ -222,16 +232,83 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    backgroundColor: '#DCADFF',
-    paddingBottom: 20
+    paddingBottom: 20,
+    position: 'relative',
+    zIndex: 3
   },
   socialMediaIcon: {
-    resizeMode: 'contain',
+    resizeMode: 'center',
     height: width / 6,
     width: width / 6,
-    marginHorizontal: 2
+    marginHorizontal: 2,
   },
   yt: {
     width: width / 4
+  },
+  voteContainer: {
+    height: height * 0.1,
+    width: width,
+    backgroundColor: '#FE75B8',
+    borderWidth: 3,
+    borderColor: 'black',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start'
+  },
+  voteButton: {
+    position: 'relative',
+    margin: 5,
+    alignItems: 'center',
+    borderWidth: 4,
+    borderColor: 'black',
+    backgroundColor: 'white',
+    paddingVertical: height * 0.015,
+    paddingHorizontal: width / 8,
+    zIndex: 1
+  },
+  voteButtonShadow: {
+    position: 'absolute',
+    paddingVertical: height * 0.015,
+    paddingHorizontal: width / 8,
+    borderWidth: 4,
+    borderColor: 'black',
+    backgroundColor: 'black',
+    zIndex: 0,
+    top: 10,
+    left: 10
+  },
+  voteButtonText: {
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 18,
+  },
+  backButton: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 4,
+    padding: 5,
+    borderColor: 'black',
+    backgroundColor: 'white',
+    zIndex: 1
+  },
+  backButtonShadow: {
+    position: 'absolute',
+    borderWidth: 4,
+    borderColor: 'black',
+    backgroundColor: 'black',
+    zIndex: 0,
+    padding: 5,
+    top: 3,
+    left: 3
+  },
+  backButtonText: {
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 18,
+  },
+  back: {
+    position: 'absolute',
+    left: 15,
+    top: (height * 0.1) / 5
   }
 })
