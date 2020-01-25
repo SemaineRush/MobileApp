@@ -5,7 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { VoteFooter } from '../Common/Footer'
 import ConfirmVote from '../Alerts/ConfirmVote';
-import { Icon } from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class Vote extends React.Component {
     constructor(props) {
