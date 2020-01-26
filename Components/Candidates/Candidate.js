@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import Comic from './Comic'
 import BlueCandidate from './Blue'
+import Yellow from './Yellow'
 
 const Candidate = props => {
   const { navigate, goBack, getParam } = props.navigation
@@ -11,7 +12,9 @@ const Candidate = props => {
       ? <Comic navigate={ navigate } goBack={ goBack } />
       : getParam('candidatePage') === 'Blue'
         ? <BlueCandidate />
-        : <Text>No Page Found</Text> }
+        : getParam('candidatePage') === 'Yellow'
+          ? <Yellow navigate={ navigate } goBack={ goBack } />
+          : <Text>No Page Found</Text> }
   </View>
 }
 

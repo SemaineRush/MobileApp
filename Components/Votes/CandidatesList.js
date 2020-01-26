@@ -27,6 +27,15 @@ class CandidatesList extends React.Component {
                     color: "#BBB",
                     title: "Suis-moi, je te fuis !",
                     page: 'Blue'
+                },
+                {
+                    id: 3,
+                    firstname: "test",
+                    lastname: "Test",
+                    picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
+                    color: "#BBB",
+                    title: "lorem ipsum",
+                    page: 'Yellow'
                 }
             ]
         };

@@ -45,12 +45,12 @@ class Vote extends React.Component {
     }
 
     render() {
-        const { navigate } = this.props.navigation;
+        const { goBack } = this.props.navigation;
         return (
             <ScrollView>
                 { this.state.alertVisible === 1 && <ConfirmVote visible={ true } hideAlert={ () => this.hideAlert() } validateVote={ () => this.validateVote() } candidate={ this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname } /> }
                 <View style={ { minHeight: height, position: 'relative' } }>
-                    <TouchableOpacity style={ styles.back } color={ Colors.black.color } onPress={ () => navigate('CandidatesList') }>
+                    <TouchableOpacity style={ styles.back } color={ Colors.black.color } onPress={ () => goBack() }>
                         <Icon name="chevron-left" color={ BackgroundColors.black.backgroundColor } size={ 30 } />
                     </TouchableOpacity>
                     <View style={ styles.header }>
