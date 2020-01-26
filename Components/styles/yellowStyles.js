@@ -144,3 +144,81 @@ export const styles = StyleSheet.create({
     color: 'white',
   },
 });
+
+export const resultStyles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFD02A',
+    flex: 1,
+    alignItems: 'center',
+  },
+  header: {
+    position: 'absolute',
+    top: height * 0.05,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  firstText_contain: {
+    color: '#5391FF',
+    fontSize: 75,
+    fontFamily: 'Montserrat-Bold',
+    marginTop: 3
+  },
+  secondText_contain: {
+    color: 'white',
+    fontSize: 75,
+    fontFamily: 'Montserrat-Bold',
+  },
+  btn: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#615AD3',
+    width: width * 0.9,
+    height: 52,
+    borderRadius: 50,
+    bottom: height * 0.05,
+    position: 'absolute',
+    marginLeft: width * 0.05,
+  },
+  btnText: {
+    fontSize: 17,
+    fontFamily: 'Montserrat-Bold',
+    color: 'white',
+  },
+  character: {
+    width: width * 1.2,
+    height: height * 0.7,
+    position: 'absolute',
+    bottom: 0,
+    resizeMode: 'contain'
+  },
+  bulle1: {
+    height: 175.18,
+    width: 329.86,
+    position: 'absolute',
+    marginTop: height * 0.15,
+    left: -(width * 0.235)
+  },
+  bulle2: {
+    height: 215,
+    width: 329.86,
+    position: 'absolute',
+    marginTop: height * 0.23,
+    right: -165,
+  },
+  bulle3: {
+    height: 230,
+    width: 329.86,
+    position: 'absolute',
+    marginTop: height * 0.615,
+    right: -(width * 0.1),
+  },
+  bulle4: {
+    height: 240,
+    width: 140,
+    position: 'absolute',
+    marginTop: height * 0.51,
+    marginLeft: 15,
+  },
+});
