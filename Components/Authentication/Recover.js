@@ -79,8 +79,15 @@ const Recover = props => {
           setEmail={ setEmail }
         />
         <PrimaryButton
-          onPress={ () => sendForm(email, stateRequest) }
+          onPress={ () => sendForm(email, setStateRequest) }
           title={ 'Valider' }
+          style={
+            stateRequest === 'FAILURE'
+              ? BackgroundColors.red
+              : stateRequest === 'Success'
+                ? BackgroundColors.green
+                : null
+          }
         />
       </View>
       <View style={ [styles.container, { marginBottom: 45 }] }>

@@ -24,7 +24,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 35,
+        paddingVertical: 45,
+    },
+    forget: {
+        position: 'absolute',
+        right: 10,
+        bottom: 30
     }
 });
 
@@ -77,13 +82,20 @@ const Login = props => {
                     email={ email }
                     setEmail={ setEmail }
                 />
-                <Password
-                    label='mot de passe'
-                    placeholder={ 'UnMotDePasse86' }
-                    reference={ passwordRef }
-                    password={ password }
-                    setPassword={ setPassword }
-                />
+                <View style={ { position: 'relative' } }>
+                    <Password
+                        label='mot de passe'
+                        placeholder={ 'UnMotDePasse86' }
+                        reference={ passwordRef }
+                        password={ password }
+                        setPassword={ setPassword }
+                    />
+                    <LinkButton
+                        onPress={ () => navigate('Recover') }
+                        title={ 'Mot de passe oublié ?' }
+                        style={ styles.forget }
+                    />
+                </View>
                 <PrimaryButton
                     onPress={ () => sendForm(email, password, setStateRequest) }
                     title={ 'Connexion' }
@@ -101,10 +113,6 @@ const Login = props => {
                 />
             </View>
             <View style={ [styles.container, { marginBottom: 45 }] }>
-                <LinkButton
-                    onPress={ () => navigate('Recover') }
-                    title={ 'Mot de passe oublié ?' }
-                />
                 <Text style={ Colors.grey }>
                     Vous n’avez pas de compte ?
                 </Text>
