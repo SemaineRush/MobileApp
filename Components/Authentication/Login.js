@@ -110,7 +110,7 @@ const Login = props => {
                     }
                 />
                 <SecondaryButton
-                    onPress={ () => null }
+                    onPress={ () => navigate('Office') }
                     title={ 'Se connecter avec Office365' }
                 />
             </View>

@@ -6,8 +6,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { api, getToken } from '../helpers/api';
 
-const candidatesList = {
-    firstCandidate: {
+const candidatesList = [
+    {
         id: 1,
         firstname: "Clémence",
         lastname: "Chevalier",
@@ -21,7 +21,7 @@ const candidatesList = {
         "votes": 0,
         "percentage": 0
     },
-    secondCandidate: {
+    {
         id: 2,
         firstname: "Andréa",
         lastname: "Ngamouyi",
@@ -35,7 +35,7 @@ const candidatesList = {
         "votes": 0,
         "percentage": 0
     },
-    thirdCandidate: {
+    {
         id: 3,
         firstname: "test",
         lastname: "Test",
@@ -49,16 +49,22 @@ const candidatesList = {
         "votes": 0,
         "percentage": 0
     }
-}
+]
 
-const getCandidates = () => {
+const getCandidates = setCandidates => {
     getToken().then(token => {
         api.get('/election_current', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then(json => {
-            console.log(json)
+            api.get(`/elections/${json.data.response.last_election.id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(res => {
+                setCandidates(res.data.candidateElection)
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -66,12 +72,12 @@ const getCandidates = () => {
 }
 
 const CandidatesList = props => {
-    const [candidates, setCandidates] = useState({});
+    const [candidates, setCandidates] = useState([]);
     const { navigate } = props.navigation;
 
     useEffect(() => {
-        getCandidates()
-        setCandidates(candidatesList)
+        getCandidates(setCandidates)
+        console.log(candidates)
     }, [])
 
     return <ScrollView>
@@ -82,13 +88,13 @@ const CandidatesList = props => {
                 <Text style={ styles.subtitle }>BDE 2020</Text>
             </View>
             <View style={ styles.bodyContainer }>
-                { Object.values(candidates).map(candidate => {
-                    return <TouchableOpacity key={ candidate.id } style={ [styles.candidate, { backgroundColor: candidate.color }] } onPress={ () => navigate('Candidate', { candidatePage: candidate.component.mobile }) }>
-                        <View style={ { paddingTop: 20 } }>
-                            <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.firstname } { candidate.lastname.toUpperCase() }</Text>
-                            <Text style={ { color: 'white' } }>{ candidate.title }</Text>
+                { candidates.map(candidate => {
+                    return <TouchableOpacity key={ candidate.id } style={ [styles.candidate, { backgroundColor: candidate.informations.color }] } onPress={ () => navigate('Candidate', { candidatePage: candidate.informations.component_candidate_mobile }) }>
+                        <View style={ { paddingTop: 20, width: '60%' } }>
+                            <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.informations.firstname } { candidate.informations.lastname.toUpperCase() }</Text>
+                            <Text style={ { color: 'white' } }>{ candidate.informations.slogan }</Text>
                         </View>
-                        <Image source={ { uri: candidate.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
+                        <Image source={ { uri: candidate.informations.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
                     </TouchableOpacity>
                 }) }
             </View>

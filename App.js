@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Recover from './Components/Authentication/Recover';
+import Office from './Components/Authentication/Office';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 import Candidate from './Components/Candidates/Candidate';
@@ -17,6 +18,7 @@ const MainNavigator = createStackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
   Recover: { screen: Recover },
+  Office: { screen: Office },
   CandidatesList: { screen: CandidatesList },
   Candidate: { screen: Candidate },
   Vote: { screen: Vote },
