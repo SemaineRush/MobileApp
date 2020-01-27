@@ -11,6 +11,7 @@ import Recover from './Components/Authentication/Recover';
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 import BlueCandidate from './Components/Candidates/Blue';
+import BlueResults from './Components/Candidates/BlueResults';
 
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
@@ -19,6 +20,7 @@ const MainNavigator = createStackNavigator({
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
   Blue: { screen: BlueCandidate},
+  BlueResults: {screen: BlueResults},
 }, {
   defaultNavigationOptions: {
     headerShown: false

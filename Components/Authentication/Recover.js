@@ -5,7 +5,7 @@ import { CheckError, Email } from '../Common/Input';
 import { Texts, Colors, BackgroundColors, height, width } from '../styles/Styles';
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
-import examples from '../utils/examples';
+import examples from '../Utils/examples';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 

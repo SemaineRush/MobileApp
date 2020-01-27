@@ -4,7 +4,7 @@ import { BackgroundColors, width } from '../styles/Styles';
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { isEmail } from 'validator';
-import regex from '../utils/regex';
+import regex from '../Utils/regex';
 
 const styles = StyleSheet.create({
   label: {
