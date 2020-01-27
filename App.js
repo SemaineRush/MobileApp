@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View, Image } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Image, AsyncStorage } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -10,6 +10,7 @@ import Recover from './Components/Authentication/Recover';
 import Candidate from './Components/Candidates/Candidate'
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
+import Candidate from './Components/Candidates/Candidate';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
 
@@ -20,8 +21,8 @@ const MainNavigator = createStackNavigator({
   Candidate: { screen: Candidate },
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
-  Blue: { screen: BlueCandidate},
-  BlueResults: {screen: BlueResults},
+  Blue: { screen: BlueCandidate },
+  BlueResults: { screen: BlueResults },
 }, {
   defaultNavigationOptions: {
     headerShown: false
@@ -36,6 +37,8 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
+    await AsyncStorage.clear().then(() => console.log('Cleared'))
+
     await Font.loadAsync({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
@@ -49,6 +52,10 @@ export default class App extends React.Component {
     });
 
     this.setState({ assetsLoaded: true });
+  }
+
+  async componentWillUnmount() {
+    await AsyncStorage.clear().then(() => console.log('Cleared'))
   }
 
   render() {

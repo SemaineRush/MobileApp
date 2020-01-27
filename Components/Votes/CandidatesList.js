@@ -1,73 +1,102 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { width, BackgroundColors, height } from '../styles/Styles';
 import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
+import { api, getToken } from '../helpers/api';
 
-class CandidatesList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            candidates: [
-                {
-                    id: 1,
-                    firstname: "Clémence",
-                    lastname: "Chevalier",
-                    picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
-                    color: "#555",
-                    title: "Le monde est à nous !",
-                    page: 'Comic'
-                },
-                {
-                    id: 2,
-                    firstname: "Andréa",
-                    lastname: "Ngamouyi",
-                    picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
-                    color: "#BBB",
-                    title: "Suis-moi, je te fuis !",
-                    page: 'Blue'
-                },
-                {
-                    id: 3,
-                    firstname: "test",
-                    lastname: "Test",
-                    picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
-                    color: "#BBB",
-                    title: "lorem ipsum",
-                    page: 'Yellow'
-                }
-            ]
-        };
-    }
-
-    render() {
-        const { navigate } = this.props.navigation;
-        return (
-            <ScrollView>
-                <RoundPurpleBG />
-                <View style={ { minHeight: height } }>
-                    <View style={ styles.headerContainer }>
-                        <Text style={ styles.title }>Élections de SUP'Internet</Text>
-                        <Text style={ styles.subtitle }>BDE 2020</Text>
-                    </View>
-                    <View style={ styles.bodyContainer }>
-                        { this.state.candidates.map(user => {
-                            return <TouchableOpacity key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] } onPress={ () => navigate('Candidate', { candidatePage: user.page }) }>
-                                <View style={ { paddingTop: 20 } }>
-                                    <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
-                                    <Text style={ { color: 'white' } }>{ user.title }</Text>
-                                </View>
-                                <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
-                            </TouchableOpacity>
-                        }) }
-                    </View>
-                    <PrimaryButton title="Voter" onPress={ () => navigate('Vote') } style={ [BackgroundColors.blue, styles.vote] } />
-                </View>
-            </ScrollView>
-        );
+const candidatesList = {
+    firstCandidate: {
+        id: 1,
+        firstname: "Clémence",
+        lastname: "Chevalier",
+        picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
+        color: "#555",
+        title: "Le monde est à nous !",
+        component: {
+            front: '',
+            mobile: 'Comic'
+        },
+        "votes": 0,
+        "percentage": 0
+    },
+    secondCandidate: {
+        id: 2,
+        firstname: "Andréa",
+        lastname: "Ngamouyi",
+        picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
+        color: "#BBB",
+        title: "Suis-moi, je te fuis !",
+        component: {
+            front: '',
+            mobile: 'Blue'
+        },
+        "votes": 0,
+        "percentage": 0
+    },
+    thirdCandidate: {
+        id: 3,
+        firstname: "test",
+        lastname: "Test",
+        picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
+        color: "#F0F",
+        title: "lorem ipsum",
+        component: {
+            front: '',
+            mobile: 'Yellow'
+        },
+        "votes": 0,
+        "percentage": 0
     }
 }
+
+const getCandidates = () => {
+    getToken().then(token => {
+        api.get('/election_current', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(json => {
+            console.log(json)
+        }).catch((err) => {
+            console.log(err)
+        })
+    })
+}
+
+const CandidatesList = props => {
+    const [candidates, setCandidates] = useState({});
+    const { navigate } = props.navigation;
+
+    useEffect(() => {
+        getCandidates()
+        setCandidates(candidatesList)
+    }, [])
+
+    return <ScrollView>
+        <RoundPurpleBG />
+        <View style={ { minHeight: height } }>
+            <View style={ styles.headerContainer }>
+                <Text style={ styles.title }>Élections de SUP'Internet</Text>
+                <Text style={ styles.subtitle }>BDE 2020</Text>
+            </View>
+            <View style={ styles.bodyContainer }>
+                { Object.values(candidates).map(candidate => {
+                    return <TouchableOpacity key={ candidate.id } style={ [styles.candidate, { backgroundColor: candidate.color }] } onPress={ () => navigate('Candidate', { candidatePage: candidate.component.mobile }) }>
+                        <View style={ { paddingTop: 20 } }>
+                            <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.firstname } { candidate.lastname.toUpperCase() }</Text>
+                            <Text style={ { color: 'white' } }>{ candidate.title }</Text>
+                        </View>
+                        <Image source={ { uri: candidate.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
+                    </TouchableOpacity>
+                }) }
+            </View>
+            <PrimaryButton title="Voter" onPress={ () => navigate('Vote') } style={ [BackgroundColors.blue, styles.vote] } />
+        </View>
+    </ScrollView>
+}
+
 
 const styles = StyleSheet.create({
     headerContainer: {
