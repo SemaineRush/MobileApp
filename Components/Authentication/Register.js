@@ -122,7 +122,7 @@ const Register = props => {
                     }
                 />
                 <SecondaryButton
-                    onPress={ () => null }
+                    onPress={ () => navigate('Office') }
                     title={ 'S\'inscrire avec Office365' }
                 />
             </View>
