@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ScrollView, View, Text, Image } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
 import { Texts, BackgroundColors, Colors } from '../styles/blueStyles';
 import { width } from '../styles/Styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -9,8 +9,11 @@ class BlueCandidate extends React.Component {
     render() {
         return (
             <ScrollView>
-                <View style={ [BackgroundColors.blue, { height: 300 }] }>
-                    <Text style={ [Colors.white, Texts.h1, { marginLeft: 30, marginTop: 40 }] }>Guiral Lapouge</Text>
+                <TouchableOpacity style={ styles.back } color={ Colors.white.color } onPress={ () => this.props.goBack() }>
+                    <Icon name="chevron-left" color={ BackgroundColors.white.backgroundColor } size={ 30 } />
+                </TouchableOpacity>
+                <View style={ [BackgroundColors.blue, { height: 350 }] }>
+                    <Text style={ [Colors.white, Texts.h1, { marginLeft: 30, marginTop: 80 }] }>Guiral Lapouge</Text>
                     <Text style={ [Colors.white, Texts.h4, { marginLeft: 30, marginTop: 10 }] }>“Des idées d’aujourd’hui naissent les projets de demain”</Text>
                     <View style={ [BackgroundColors.white, styles.subtitle] }>
                         <Text style={ [Texts.h3, styles.subtitleText] }>Esse sunt qui est quis et qui. Deserunt aliquip id amet anim magna eu ad incididunt consequat.</Text>
@@ -127,6 +130,12 @@ class BlueCandidate extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    back: {
+        position: "absolute",
+        left: 30,
+        top: 40,
+        zIndex: 20,
+    },
     subtitle: {
         position: "absolute",
         bottom: 0,

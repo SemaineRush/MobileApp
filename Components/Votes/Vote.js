@@ -42,15 +42,18 @@ class Vote extends React.Component {
     render() {
         const { goBack } = this.props.navigation;
         let candidate = null
+        let candidateId = null
         if (this.state.checked === -1) {
             candidate = "Vote Blanc"
+            candidateId = 0
         }
         else if (this.state.checked !== null && this.state.checked >= 0) {
             candidate = this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname
+            candidateId = this.state.candidates[this.state.checked].id
         }
         return (
             <ScrollView>
-                { this.state.alertVisible === 1 && <ConfirmVote visible={ true } hideAlert={ () => this.hideAlert() } candidate={candidate} /> }
+                { this.state.alertVisible === 1 && <ConfirmVote visible={ true } hideAlert={ () => this.hideAlert() } candidate={candidate} candidateId={candidateId} /> }
                 <View style={ { minHeight: height, position: 'relative' } }>
                     <TouchableOpacity style={ styles.back } color={ Colors.black.color } onPress={ () => goBack() }>
                         <Icon name="chevron-left" color={ BackgroundColors.black.backgroundColor } size={ 30 } />

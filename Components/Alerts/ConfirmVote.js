@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal } from 'react-native';
+import { View, Text, StyleSheet, Modal, Alert } from 'react-native';
 import { Texts, height, width, BackgroundColors } from '../styles/Styles';
 import { PrimaryButton } from '../Common/Button';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import { api, getToken } from '../Helpers/api'
+import { api, getToken } from '../helpers/api'
 
 class ConfirmVote extends React.Component {
     constructor(props) {
@@ -17,11 +17,21 @@ class ConfirmVote extends React.Component {
 
     vote() {
         getToken().then(token => {
-            api.get('/election_current/', {headers: "Bearer " + token})
-            .then(res => res.json())
-            .then(res => {
-                console.log(res)
-                this.setState({ showNextAlert: true });
+            api.get('/election_current', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(json => {
+                let electionId = json.data.response.last_election.id
+                api.post(`/vote/${electionId}/${this.props.candidateId}`, {
+                    headers: {
+                      Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(res => this.setState({ showNextAlert: true }))
+                .catch(err => {console.log(err); Alert.alert("Error", "Something went wrong...", {text: 'OK', onPress: () => this.props.navigation.navigate("Vote")})})
+            }).catch((err) => {
+                console.log(err)
             })
         })
     }
