@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal } from 'react-native';
+import { View, Text, StyleSheet, Modal, Alert } from 'react-native';
 import { Texts, height, width, BackgroundColors } from '../styles/Styles';
 import { PrimaryButton } from '../Common/Button';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { api, getToken } from '../helpers/api'
 
 class ConfirmVote extends React.Component {
     constructor(props) {
@@ -13,6 +14,28 @@ class ConfirmVote extends React.Component {
             date: "21/01/2020"
         }
     }
+
+    vote() {
+        getToken().then(token => {
+            api.get('/election_current', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(json => {
+                let electionId = json.data.response.last_election.id
+                api.post(`/vote/${electionId}/${this.props.candidateId}`, {
+                    headers: {
+                      Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(res => this.setState({ showNextAlert: true }))
+                .catch(err => {console.log(err); Alert.alert("Error", "Something went wrong...", {text: 'OK', onPress: () => this.props.navigation.navigate("Vote")})})
+            }).catch((err) => {
+                console.log(err)
+            })
+        })
+    }
+
     render() {
         return (
             <View style={ styles.blurred }>
@@ -25,7 +48,7 @@ class ConfirmVote extends React.Component {
                                 <TouchableOpacity onPress={ () => this.props.hideAlert() }>
                                     <Text style={ Texts.info }>Annuler</Text>
                                 </TouchableOpacity>
-                                <PrimaryButton title="Valider" style={ { width: 100 } } onPress={ () => this.setState({ showNextAlert: true }) } />
+                                <PrimaryButton title="Valider" style={ { width: 100 } } onPress={ () => this.vote() } />
                             </View>
                         </View>
                         : <View style={ finishedVoteStyles.modal }>

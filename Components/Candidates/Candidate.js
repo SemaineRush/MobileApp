@@ -11,7 +11,7 @@ const Candidate = props => {
     { getParam('candidatePage') === 'Comic'
       ? <Comic navigate={ navigate } goBack={ goBack } />
       : getParam('candidatePage') === 'Blue'
-        ? <BlueCandidate />
+        ? <BlueCandidate goBack={ goBack } />
         : getParam('candidatePage') === 'Yellow'
           ? <Yellow navigate={ navigate } goBack={ goBack } />
           : <Text>No Page Found</Text> }

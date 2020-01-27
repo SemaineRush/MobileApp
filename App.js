@@ -8,9 +8,9 @@ import Login from './Components/Authentication/Login';
 import Register from './Components/Authentication/Register';
 import Recover from './Components/Authentication/Recover';
 import Office from './Components/Authentication/Office';
+import Candidate from './Components/Candidates/Candidate'
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
-import Candidate from './Components/Candidates/Candidate';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
 
@@ -19,8 +19,8 @@ const MainNavigator = createStackNavigator({
   Register: { screen: Register },
   Recover: { screen: Recover },
   Office: { screen: Office },
-  CandidatesList: { screen: CandidatesList },
   Candidate: { screen: Candidate },
+  CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
   Blue: { screen: BlueCandidate },
   BlueResults: { screen: BlueResults },
@@ -38,7 +38,7 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
-    await AsyncStorage.clear().then(() => console.log('Cleared'))
+    await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove)
 
     await Font.loadAsync({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
@@ -56,7 +56,7 @@ export default class App extends React.Component {
   }
 
   async componentWillUnmount() {
-    await AsyncStorage.clear().then(() => console.log('Cleared'))
+    await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove)
   }
 
   render() {
