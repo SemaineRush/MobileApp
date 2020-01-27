@@ -13,6 +13,7 @@ import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
+import ComicResults from './Components/Candidates/ComicResults';
 
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
@@ -24,6 +25,7 @@ const MainNavigator = createStackNavigator({
   Vote: { screen: Vote },
   Blue: { screen: BlueCandidate },
   BlueResults: { screen: BlueResults },
+  ComicResults: { screen: ComicResults },
 }, {
   defaultNavigationOptions: {
     headerShown: false

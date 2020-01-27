@@ -18,7 +18,6 @@ const getCandidates = setCandidates => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(res => {
-                console.log(res)
                 setCandidates(res.data.candidateElection)
             })
         }).catch((err) => {

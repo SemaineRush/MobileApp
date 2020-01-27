@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { height, width } from './Styles';
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   wrap: {
     flex: 1
   },
@@ -311,3 +311,40 @@ export const styles = StyleSheet.create({
     top: (height * 0.1) / 5
   }
 })
+
+const resultsStyles = StyleSheet.create({
+  view: {
+    flex: 1,
+    height: height,
+    width: width
+  },
+  head: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6954EB',
+    borderColor: '#251F1F',
+    borderWidth: 5,
+    padding: 25,
+    flex: 1
+  },
+  headText: {
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 65,
+    color: '#fff',
+    textTransform: 'uppercase'
+  },
+  main: {
+    flex: 5
+  },
+  square: {
+    flex: 1,
+    borderWidth: 2,
+    borderColor: 'black'
+  },
+  squareRow: {
+    flex: 1,
+    flexDirection: 'row'
+  },
+})
+
+export { styles, resultsStyles }
