@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View, Image } from 'react-native';
+import { ActivityIndicator, StyleSheet, View, Image, AsyncStorage } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -32,6 +32,8 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
+    await AsyncStorage.clear().then(() => console.log('Cleared'))
+
     await Font.loadAsync({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
@@ -45,6 +47,10 @@ export default class App extends React.Component {
     });
 
     this.setState({ assetsLoaded: true });
+  }
+
+  async componentWillUnmount() {
+    await AsyncStorage.clear().then(() => console.log('Cleared'))
   }
 
   render() {

@@ -6,6 +6,7 @@ import { Texts, Colors, BackgroundColors, height, width } from '../styles/Styles
 import { AuthHeader } from '../Common/Headers';
 import { Footer } from '../Common/Footer';
 import examples from '../utils/examples';
+import { api } from '../helpers/api';
 
 const placeholder = examples[Math.floor(Math.random() * examples.length)]
 
@@ -35,7 +36,7 @@ const sendForm = (email, setStateRequest) => {
 
   if (!CheckError("Email", email)) {
     api.post('/auth/reset', {
-      username: email
+      email: email
     }).then(() => {
       console.log('Success')
       setStateRequest("Success")

@@ -10,21 +10,20 @@ const api = axios.create({
 });
 
 const getToken = async () => {
-    let token = ''
     try {
-        token = await AsyncStorage.getItem("token") || 'none'
+        return await AsyncStorage.getItem("token")
     } catch (error) {
         console.log("Something went wrong", error);
+        return null
     }
-
-    return token
 }
 
 const storeToken = async token => {
     try {
-        await AsyncStorage.setItem("token", token);
+        await AsyncStorage.setItem("token", token)
     } catch (error) {
         console.log("Something went wrong", error);
+        return null
     }
 }
 

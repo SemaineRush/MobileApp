@@ -63,9 +63,11 @@ const Login = props => {
     const { navigate } = props.navigation
 
     useEffect(() => {
-        if (stateRequest === 'Success' && (getToken() !== 'none' || getToken() !== null)) {
-            navigate('CandidatesList')
-        }
+        getToken().then(value => {
+            if (stateRequest === 'Success' && value !== null) {
+                navigate('CandidatesList')
+            }
+        })
 
         setTimeout(() => {
             setStateRequest(null)

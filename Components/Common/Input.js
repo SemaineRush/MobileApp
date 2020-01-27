@@ -44,7 +44,7 @@ const CheckError = (field, value) => {
       return !regex.lowercase.test(value)
         || !regex.uppercase.test(value)
         || !regex.number.test(value)
-        || value.length < 6
+        || value.length < 8
         || value.length > 255
 
     default:
