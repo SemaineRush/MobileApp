@@ -6,51 +6,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { api, getToken } from '../helpers/api';
 
-const candidatesList = [
-    {
-        id: 1,
-        firstname: "Clémence",
-        lastname: "Chevalier",
-        picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
-        color: "#555",
-        title: "Le monde est à nous !",
-        component: {
-            front: '',
-            mobile: 'Comic'
-        },
-        "votes": 0,
-        "percentage": 0
-    },
-    {
-        id: 2,
-        firstname: "Andréa",
-        lastname: "Ngamouyi",
-        picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
-        color: "#BBB",
-        title: "Suis-moi, je te fuis !",
-        component: {
-            front: '',
-            mobile: 'Blue'
-        },
-        "votes": 0,
-        "percentage": 0
-    },
-    {
-        id: 3,
-        firstname: "test",
-        lastname: "Test",
-        picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
-        color: "#F0F",
-        title: "lorem ipsum",
-        component: {
-            front: '',
-            mobile: 'Yellow'
-        },
-        "votes": 0,
-        "percentage": 0
-    }
-]
-
 const getCandidates = setCandidates => {
     getToken().then(token => {
         api.get('/election_current', {
@@ -94,7 +49,7 @@ const CandidatesList = props => {
                             <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.informations.firstname } { candidate.informations.lastname.toUpperCase() }</Text>
                             <Text style={ { color: 'white' } }>{ candidate.informations.slogan }</Text>
                         </View>
-                        <Image source={ { uri: candidate.informations.image_url } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
+                        <Image source={ { uri: candidate.informations.image_url } } style={ { width: (width * 0.8) / 2.7, height: 150, alignSelf: 'flex-end' } } />
                     </TouchableOpacity>
                 }) }
             </View>

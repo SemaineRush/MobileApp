@@ -6,37 +6,45 @@ import { PrimaryButton } from '../Common/Button';
 import { VoteFooter } from '../Common/Footer'
 import ConfirmVote from '../Alerts/ConfirmVote';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { api, getToken } from '../helpers/api';
 
 class Vote extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             checked: null,
-            candidates: [
-                {
-                    id: 1,
-                    firstname: "Clémence",
-                    lastname: "Chevalier",
-                    picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
-                    color: "#555",
-                    title: "Le monde est à nous !",
-                },
-                {
-                    id: 2,
-                    firstname: "Andréa",
-                    lastname: "Ngamouyi",
-                    picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
-                    color: "#BBB",
-                    title: "Suis-moi, je te fuis !",
-                }
-            ],
+            candidates: [],
             alertVisible: 0,
             viewRef: null
         };
     }
 
+    componentDidMount() {
+        this.getCandidates();
+    }
+
     hideAlert() {
         this.setState({ alertVisible: 0 });
+    }
+
+    getCandidates() {
+        getToken().then(token => {
+            api.get('/election_current', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(json => {
+                api.get(`/elections/${json.data.response.last_election.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }).then(res => {
+                    this.setState({ candidates: res.data.candidateElection });
+                })
+            }).catch((err) => {
+                console.log(err)
+            })
+        })
     }
 
     render() {
@@ -48,8 +56,9 @@ class Vote extends React.Component {
             candidateId = 0
         }
         else if (this.state.checked !== null && this.state.checked >= 0) {
-            candidate = this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname
-            candidateId = this.state.candidates[this.state.checked].id
+            let info = this.state.candidates[this.state.checked]
+            candidate = info.informations.firstname + " " + info.informations.lastname
+            candidateId = info.id
         }
         return (
             <ScrollView>
@@ -66,8 +75,8 @@ class Vote extends React.Component {
                         <View style={ styles.bodyContainer }>
                             { this.state.candidates.map((user, index) => {
                                 return <TouchableOpacity key={ user.id } style={ styles.candidate } onPress={ () => this.setState({ checked: index }) }>
-                                    <Image source={ { uri: user.picture } } style={ styles.candidateImg } />
-                                    <Text style={ [Texts.h1, styles.name] }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
+                                    <Image source={ { uri: user.informations.image_url } } style={ styles.candidateImg } />
+                                    <Text style={ [Texts.h1, styles.name] }>{ user.informations.firstname } { user.informations.lastname.toUpperCase() }</Text>
                                     <View style={ this.state.checked === index ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
                                 </TouchableOpacity>
                             }) }
