@@ -4,6 +4,7 @@ import { Texts, height, width, BackgroundColors } from '../styles/Styles';
 import { PrimaryButton } from '../Common/Button';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import { api, getToken } from '../Helpers/api'
 
 class ConfirmVote extends React.Component {
     constructor(props) {
@@ -13,6 +14,18 @@ class ConfirmVote extends React.Component {
             date: "21/01/2020"
         }
     }
+
+    vote() {
+        getToken().then(token => {
+            api.get('/election_current/', {headers: "Bearer " + token})
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.setState({ showNextAlert: true });
+            })
+        })
+    }
+
     render() {
         return (
             <View style={ styles.blurred }>
@@ -25,7 +38,7 @@ class ConfirmVote extends React.Component {
                                 <TouchableOpacity onPress={ () => this.props.hideAlert() }>
                                     <Text style={ Texts.info }>Annuler</Text>
                                 </TouchableOpacity>
-                                <PrimaryButton title="Valider" style={ { width: 100 } } onPress={ () => this.setState({ showNextAlert: true }) } />
+                                <PrimaryButton title="Valider" style={ { width: 100 } } onPress={ () => this.vote() } />
                             </View>
                         </View>
                         : <View style={ finishedVoteStyles.modal }>

@@ -11,7 +11,7 @@ class Vote extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checked: -1,
+            checked: null,
             candidates: [
                 {
                     id: 1,
@@ -39,16 +39,18 @@ class Vote extends React.Component {
         this.setState({ alertVisible: 0 });
     }
 
-    validateVote() {
-        let candidate = this.state.candidates[this.state.checked]
-        this.setState({ alertVisible: 0 }, () => this.setState({ alertVisible: 1 }));
-    }
-
     render() {
         const { goBack } = this.props.navigation;
+        let candidate = null
+        if (this.state.checked === -1) {
+            candidate = "Vote Blanc"
+        }
+        else if (this.state.checked !== null && this.state.checked >= 0) {
+            candidate = this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname
+        }
         return (
             <ScrollView>
-                { this.state.alertVisible === 1 && <ConfirmVote visible={ true } hideAlert={ () => this.hideAlert() } validateVote={ () => this.validateVote() } candidate={ this.state.candidates[this.state.checked].firstname + " " + this.state.candidates[this.state.checked].lastname } /> }
+                { this.state.alertVisible === 1 && <ConfirmVote visible={ true } hideAlert={ () => this.hideAlert() } candidate={candidate} /> }
                 <View style={ { minHeight: height, position: 'relative' } }>
                     <TouchableOpacity style={ styles.back } color={ Colors.black.color } onPress={ () => goBack() }>
                         <Icon name="chevron-left" color={ BackgroundColors.black.backgroundColor } size={ 30 } />
@@ -66,10 +68,15 @@ class Vote extends React.Component {
                                     <View style={ this.state.checked === index ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
                                 </TouchableOpacity>
                             }) }
+                            <TouchableOpacity key={0} style={ styles.candidate } onPress={ () => this.setState({ checked: -1 }) }>
+                                {/* <Image source={ { uri: user.picture } } style={ styles.candidateImg } /> */}
+                                <Text style={ [Texts.h1, styles.name] }>Vote Blanc</Text>
+                                <View style={ this.state.checked === -1 ? [styles.checkbox, styles.checked] : [styles.checkbox, styles.unchecked] }></View>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                     <VoteFooter style={ styles.footer } />
-                    <PrimaryButton title="Voter" style={ [styles.vote, BackgroundColors.blue] } onPress={ () => this.setState({ alertVisible: 1 }) } disabled={ this.state.checked === -1 } />
+                    <PrimaryButton title="Voter" style={ [styles.vote, BackgroundColors.blue] } onPress={ () => this.setState({ alertVisible: 1 }) } disabled={ this.state.checked === null } />
                 </View>
             </ScrollView>
         );
