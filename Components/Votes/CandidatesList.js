@@ -63,6 +63,7 @@ const getCandidates = setCandidates => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(res => {
+                console.log(res)
                 setCandidates(res.data.candidateElection)
             })
         }).catch((err) => {
@@ -77,7 +78,6 @@ const CandidatesList = props => {
 
     useEffect(() => {
         getCandidates(setCandidates)
-        console.log(candidates)
     }, [])
 
     return <ScrollView>
@@ -94,7 +94,7 @@ const CandidatesList = props => {
                             <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.informations.firstname } { candidate.informations.lastname.toUpperCase() }</Text>
                             <Text style={ { color: 'white' } }>{ candidate.informations.slogan }</Text>
                         </View>
-                        <Image source={ { uri: candidate.informations.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
+                        <Image source={ { uri: candidate.informations.image_url } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
                     </TouchableOpacity>
                 }) }
             </View>
