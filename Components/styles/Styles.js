@@ -1,8 +1,16 @@
+import React from 'react';
+import Constants from 'expo-constants';
 import { StyleSheet, Dimensions } from 'react-native';
 
 export let { height, width } = Dimensions.get('window');
 
-export const Colors = StyleSheet.create({
+const ConstantsStyle = StyleSheet.create({
+  statusBar: {
+    paddingTop: Constants.statusBarHeight
+  }
+})
+
+const Colors = StyleSheet.create({
   black: {
     color: '#2C2C54'
   },
@@ -23,7 +31,7 @@ export const Colors = StyleSheet.create({
   },
 })
 
-export const BackgroundColors = StyleSheet.create({
+const BackgroundColors = StyleSheet.create({
   white: {
     backgroundColor: '#FFFFFF'
   },
@@ -53,7 +61,7 @@ export const BackgroundColors = StyleSheet.create({
   }
 })
 
-export const Texts = StyleSheet.create({
+const Texts = StyleSheet.create({
   h1: {
     fontFamily: 'Montserrat-Bold',
     fontSize: 20,
@@ -87,3 +95,5 @@ export const Texts = StyleSheet.create({
     color: '#444444'
   }
 })
+
+export { Colors, BackgroundColors, Texts, ConstantsStyle };

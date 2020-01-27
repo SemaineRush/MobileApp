@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { width, BackgroundColors, height } from '../styles/Styles';
 import { RoundPurpleBG } from '../Common/Headers';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -17,6 +17,7 @@ class CandidatesList extends React.Component {
                     picture: "https://d2ck0sxsjau14o.cloudfront.net/wp-content/uploads/2018/10/young-attractive-woman.jpg",
                     color: "#555",
                     title: "Le monde est à nous !",
+                    page: 'Comic'
                 },
                 {
                     id: 2,
@@ -25,6 +26,16 @@ class CandidatesList extends React.Component {
                     picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
                     color: "#BBB",
                     title: "Suis-moi, je te fuis !",
+                    page: 'Blue'
+                },
+                {
+                    id: 3,
+                    firstname: "test",
+                    lastname: "Test",
+                    picture: "http://www.premiere.fr/sites/default/files/styles/scale_crop_1280x720/public/2018-04/Will-Smith-ne-veut-pas-faire-Men-in-Black-4.jpg",
+                    color: "#BBB",
+                    title: "lorem ipsum",
+                    page: 'Yellow'
                 }
             ]
         };
@@ -42,13 +53,13 @@ class CandidatesList extends React.Component {
                     </View>
                     <View style={ styles.bodyContainer }>
                         { this.state.candidates.map(user => {
-                            return <View key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] }>
+                            return <TouchableOpacity key={ user.id } style={ [styles.candidate, { backgroundColor: user.color }] } onPress={ () => navigate('Candidate', { candidatePage: user.page }) }>
                                 <View style={ { paddingTop: 20 } }>
                                     <Text style={ { color: 'white', fontWeight: 'bold' } }>{ user.firstname } { user.lastname.toUpperCase() }</Text>
                                     <Text style={ { color: 'white' } }>{ user.title }</Text>
                                 </View>
                                 <Image source={ { uri: user.picture } } style={ { width: (width * 0.8) / 2, height: 150, alignSelf: 'flex-end' } } />
-                            </View>
+                            </TouchableOpacity>
                         }) }
                     </View>
                     <PrimaryButton title="Voter" onPress={ () => navigate('Vote') } style={ [BackgroundColors.blue, styles.vote] } />
