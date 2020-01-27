@@ -15,17 +15,17 @@ const handleWebViewNavigationStateChange = (newNavState, navigate) => {
   }).then(response => {
     return response.json()
   }).then(json => {
-    console.log(json.token)
-    storeToken(json.token)
 
-    getToken().then(value => {
-      if (value !== null) {
-        navigate('CandidatesList')
-      }
+    storeToken(json.token).then(() => {
+      getToken().then(value => {
+        if (value !== null) {
+          navigate('CandidatesList')
+        }
+      })
     })
   }).catch(err => {
     console.log(err);
-  })
+  }).done()
 }
 
 const Office = props => {
