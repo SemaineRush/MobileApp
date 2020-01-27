@@ -18,6 +18,7 @@ const getCandidates = setCandidates => {
                     Authorization: `Bearer ${token}`
                 }
             }).then(res => {
+                console.log(res)
                 setCandidates(res.data.candidateElection)
             })
         }).catch((err) => {
@@ -32,7 +33,6 @@ const CandidatesList = props => {
 
     useEffect(() => {
         getCandidates(setCandidates)
-        console.log(candidates)
     }, [])
 
     return <ScrollView>
