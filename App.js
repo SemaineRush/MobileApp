@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, View, Image, AsyncStorage } from 'react-native';
+import { Platform, ActivityIndicator, StyleSheet, View, Image, AsyncStorage } from 'react-native';
 import * as Font from 'expo-font';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -13,6 +13,7 @@ import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
+import ComicResults from './Components/Candidates/ComicResults';
 
 const MainNavigator = createStackNavigator({
   Login: { screen: Login },
@@ -24,6 +25,7 @@ const MainNavigator = createStackNavigator({
   Vote: { screen: Vote },
   Blue: { screen: BlueCandidate },
   BlueResults: { screen: BlueResults },
+  ComicResults: { screen: ComicResults },
 }, {
   defaultNavigationOptions: {
     headerShown: false
@@ -38,7 +40,11 @@ export default class App extends React.Component {
   };
 
   async componentDidMount() {
-    await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove)
+    if (Platform.OS === 'ios') {
+      await AsyncStorage.getAllKeys().then(keys => AsyncStorage.multiRemove(keys))
+    } else {
+      await AsyncStorage.clear()
+    }
 
     await Font.loadAsync({
       'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
@@ -53,10 +59,6 @@ export default class App extends React.Component {
     });
 
     this.setState({ assetsLoaded: true });
-  }
-
-  async componentWillUnmount() {
-    await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove)
   }
 
   render() {

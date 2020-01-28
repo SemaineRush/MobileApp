@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { WebView } from 'react-native-webview'
 import { storeToken, getToken } from './../helpers/api'
 
-const handleWebViewNavigationStateChange = newNavState => {
+const handleWebViewNavigationStateChange = (newNavState, navigate) => {
   const { url } = newNavState
 
   fetch(url, {
@@ -15,27 +15,25 @@ const handleWebViewNavigationStateChange = newNavState => {
   }).then(response => {
     return response.json()
   }).then(json => {
-    console.log(json.token)
-    storeToken(json.token)
+
+    storeToken(json.token).then(() => {
+      getToken().then(value => {
+        if (value !== null) {
+          navigate('CandidatesList')
+        }
+      })
+    })
   }).catch(err => {
     console.log(err);
-  })
+  }).done()
 }
 
 const Office = props => {
   const { navigate } = props.navigation;
 
-  useEffect(() => {
-    getToken().then(value => {
-      if (value !== null) {
-        navigate('CandidatesList')
-      }
-    })
-  })
-
   return <WebView
     source={ { uri: 'https://testsamheroku.herokuapp.com/connect/azure' } }
-    onNavigationStateChange={ handleWebViewNavigationStateChange }
+    onNavigationStateChange={ newNavState => handleWebViewNavigationStateChange(newNavState, navigate) }
   />
 }
 
