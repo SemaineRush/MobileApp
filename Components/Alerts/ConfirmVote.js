@@ -23,13 +23,13 @@ class ConfirmVote extends React.Component {
                 }
             }).then(json => {
                 let electionId = json.data.response.last_election.id
-                api.post(`/vote/${electionId}/${this.props.candidateId}`, {
+                api.post(`/vote/${electionId}/${this.props.candidateId}`, {}, {
                     headers: {
                       Authorization: `Bearer ${token}`
                     }
                 })
                 .then(res => this.setState({ showNextAlert: true }))
-                .catch(err => {console.log(err); Alert.alert("Error", "Something went wrong...", {text: 'OK', onPress: () => this.props.navigation.navigate("Vote")})})
+                .catch(err => {console.log(err.response); Alert.alert("Erreur", "Vous avez déjà voté", {text: 'OK', onPress: () => this.props.navigation.navigate("Vote")})})
             }).catch((err) => {
                 console.log(err)
             })

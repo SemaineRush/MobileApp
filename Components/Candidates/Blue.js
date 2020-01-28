@@ -4,6 +4,7 @@ import { Texts, BackgroundColors, Colors } from '../styles/blueStyles';
 import { width } from '../styles/Styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { LinkButton } from '../Common/Button';
+import WebView from 'react-native-webview';
 
 class BlueCandidate extends React.Component {
     render() {
@@ -20,6 +21,7 @@ class BlueCandidate extends React.Component {
                     </View>
                 </View>
                 <View style={ [BackgroundColors.darkBlue, styles.program] }>
+                    <Image source={require('../../assets/SUP2020.png')} style={styles.sup2020} />
                     <Text style={ [Texts.h1, Colors.white] }>LE PROGRAMME</Text>
                     <View style={ [styles.redBar, BackgroundColors.red] }></View>
                     <Text style={ [Texts.info, Colors.white, { opacity: 0.5, marginBottom: 25 }] }>Notre promesse de campagne</Text>
@@ -114,7 +116,11 @@ class BlueCandidate extends React.Component {
                     <LinkButton title="Tout voir" style={ { marginLeft: width * 0.7, marginTop: 30 } } />
                 </View>
                 <Image source={ require('../../assets/guiralMap.png') } style={ { width: width, height: width } } />
-                <Image source={ require('../../assets/guiralInterview.png') } style={ { width: width, height: width * 0.52 } } />
+                <WebView
+                    style={{flex:1, width: width, height: 300, zIndex: 25}}
+                    javaScriptEnabled={true}
+                    source={{uri: 'https://www.youtube.com/embed/9fwgC1C7hT4'}}
+                />
                 <View style={ [BackgroundColors.blue, styles.campaign] }>
                     <Text style={ [Texts.h1, Colors.white] }>Suivez notre campagne</Text>
                     <View style={ styles.social }>
@@ -152,11 +158,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         width: width * 0.8,
     },
+    sup2020: {
+        width: 30,
+        height: 200,
+        position: "absolute",
+        top: 0,
+        right: 0,
+        zIndex: 20,
+    },
     program: {
         paddingLeft: 30,
         paddingRight: 30,
         paddingTop: 50,
         paddingBottom: 50,
+        position: "relative"
     },
     redBar: {
         width: 50,
