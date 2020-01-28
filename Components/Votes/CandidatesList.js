@@ -6,20 +6,24 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { PrimaryButton } from '../Common/Button';
 import { api, getToken } from '../helpers/api';
 
-const getCandidates = setCandidates => {
+const getCandidates = (setCandidates, navigate) => {
     getToken().then(token => {
         api.get('/election_current', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then(json => {
-            api.get(`/elections/${json.data.response.last_election.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            }).then(res => {
-                setCandidates(res.data.candidateElection)
-            })
+            if (json.data.response.last_election.finished) {
+                navigate('Results')
+            } else {
+                api.get(`/elections/${json.data.response.last_election.id}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }).then(res => {
+                    setCandidates(res.data.candidateElection)
+                })
+            }
         }).catch((err) => {
             console.log(err)
         })
@@ -31,7 +35,7 @@ const CandidatesList = props => {
     const { navigate } = props.navigation;
 
     useEffect(() => {
-        getCandidates(setCandidates)
+        getCandidates(setCandidates, navigate)
     }, [])
 
     return <ScrollView>

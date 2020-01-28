@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, View, Text } from 'react-native'
-import { resultsStyles } from './../styles/comicStyles'
+import { resultsStyles, styles } from './../styles/comicStyles'
 
 const createRows = (nRows, nSquares) => {
   let rows = []
@@ -32,6 +32,14 @@ const Square = props => <View
   style={ [resultsStyles.square, { backgroundColor: props.color }] }
 />
 
+const Percents = props => {
+  return <View style={ resultsStyles.percentsContainer }>
+    <View style={ resultsStyles.progress } />
+    <Text style={ resultsStyles.candidateName }>AREVICHAN</Text>
+    <Text style={ resultsStyles.candidatePercent }>20%</Text>
+  </View>
+}
+
 const ComicResults = () => {
   return <ScrollView>
     <View style={ resultsStyles.view }>
@@ -41,6 +49,11 @@ const ComicResults = () => {
       <View style={ resultsStyles.main }>
         { createRows(10, 7).map(e => e) }
       </View>
+    </View>
+    <View style={ resultsStyles.footer }>
+      <Text style={ resultsStyles.footerTitle }>AUTRES CANDIDATS :</Text>
+      <Percents />
+      <Percents />
     </View>
   </ScrollView>
 }

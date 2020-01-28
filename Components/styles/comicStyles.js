@@ -345,6 +345,62 @@ const resultsStyles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
+  footer: {
+    backgroundColor: '#FFC500',
+    borderColor: '#251F1F',
+    borderWidth: 5,
+    padding: 20,
+    alignItems: 'center'
+  },
+  footerTitle: {
+    color: 'black',
+    fontFamily: 'RobotoMono-Bold',
+    textTransform: 'uppercase',
+    fontSize: 20,
+    width: width * 0.8
+  },
+  percentsContainer: {
+    position: 'relative',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderColor: '#251F1F',
+    borderWidth: 5,
+    borderRadius: 28,
+    padding: 10,
+    marginVertical: 10,
+    width: width * 0.8,
+    height: 56
+  },
+  progress: {
+    position: 'absolute',
+    backgroundColor: '#615FDB',
+    width: '100%',
+    height: '100%',
+    top: 10,
+    left: 10,
+    borderTopLeftRadius: 28,
+    borderBottomLeftRadius: 28,
+  },
+  candidateName: {
+    color: '#fff',
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 20,
+    textTransform: 'uppercase',
+    marginLeft: 15
+  },
+  candidatePercent: {
+    color: '#615FDB',
+    fontFamily: 'RobotoMono-Bold',
+    textTransform: 'uppercase',
+    fontSize: 20,
+    marginRight: 15,
+    textShadowColor: '#fff',
+    elevation: 1,
+    textShadowOffset: { width: -1, height: 0 },
+    textShadowRadius: 10
+  }
 })
 
 export { styles, resultsStyles }

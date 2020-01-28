@@ -11,6 +11,7 @@ import Office from './Components/Authentication/Office';
 import Candidate from './Components/Candidates/Candidate'
 import CandidatesList from './Components/Votes/CandidatesList';
 import Vote from './Components/Votes/Vote';
+import Results from './Components/Votes/Results';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
 import ComicResults from './Components/Candidates/ComicResults';
@@ -23,6 +24,7 @@ const MainNavigator = createStackNavigator({
   Candidate: { screen: Candidate },
   CandidatesList: { screen: CandidatesList },
   Vote: { screen: Vote },
+  Results: { screen: Results },
   Blue: { screen: BlueCandidate },
   BlueResults: { screen: BlueResults },
   ComicResults: { screen: ComicResults },
