@@ -1,6 +1,7 @@
-import React from 'react'
-import { ScrollView, View, Text } from 'react-native'
-import { resultsStyles, styles } from './../styles/comicStyles'
+import React from 'react';
+import { ScrollView, View, Text, Image } from 'react-native';
+import { resultsStyles } from './../styles/comicStyles';
+import { width } from './../styles/Styles';
 
 const createRows = (nRows, nSquares) => {
   let rows = []
@@ -33,10 +34,10 @@ const Square = props => <View
 />
 
 const Percents = props => {
-  return <View style={ resultsStyles.percentsContainer }>
-    <View style={ resultsStyles.progress } />
-    <Text style={ resultsStyles.candidateName }>AREVICHAN</Text>
-    <Text style={ resultsStyles.candidatePercent }>20%</Text>
+  return <View style={ [resultsStyles.percentsContainer, props.style] }>
+    <View style={ [resultsStyles.progress, { width: `${props.percent}%` }] } />
+    <Text style={ resultsStyles.candidateName }>{ props.name }</Text>
+    <Text style={ resultsStyles.candidatePercent }>{ props.percent }%</Text>
   </View>
 }
 
@@ -47,13 +48,27 @@ const ComicResults = () => {
         <Text style={ resultsStyles.headText }>Résultats</Text>
       </View>
       <View style={ resultsStyles.main }>
-        { createRows(10, 7).map(e => e) }
+        { createRows(11, 7).map(e => e) }
+        <View style={ resultsStyles.winnerContainer }>
+          <Text style={ resultsStyles.winnerText }>Vainqueur</Text>
+          <Text style={ resultsStyles.winnerText }>Maëliss Taraud</Text>
+        </View>
+        <Image style={ resultsStyles.palm } source={ require('./../../assets/Comic/palm.png') } />
+        <View style={ resultsStyles.centerBlock }>
+          <Image source={ require('./../../assets/Comic/crown.png') } />
+          <Text style={ [resultsStyles.centerText, { fontSize: 29 }] }>Maire</Text>
+          <Text style={ [resultsStyles.centerText, { fontSize: 32 }] }>2020</Text>
+          <Image source={ require('./../../assets/Comic/arrow-down.png') } />
+          <Percents style={ { width: width * 0.9 } } name={ "vainqueur maëliss taraud" } percent={ 60 } />
+          <Image source={ require('./../../assets/Comic/arrow-down.png') } />
+          <Image source={ require('./../../assets/Comic/arrow-down.png') } />
+        </View>
       </View>
     </View>
     <View style={ resultsStyles.footer }>
       <Text style={ resultsStyles.footerTitle }>AUTRES CANDIDATS :</Text>
-      <Percents />
-      <Percents />
+      <Percents name="arevichan" percent={ 20 } />
+      <Percents name="guiral" percent={ 13 } />
     </View>
   </ScrollView>
 }

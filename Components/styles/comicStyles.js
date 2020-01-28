@@ -325,6 +325,7 @@ const resultsStyles = StyleSheet.create({
     borderColor: '#251F1F',
     borderWidth: 5,
     padding: 25,
+    paddingBottom: 0,
     flex: 1
   },
   headText: {
@@ -334,7 +335,8 @@ const resultsStyles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   main: {
-    flex: 5
+    flex: 5,
+    alignItems: 'center'
   },
   square: {
     flex: 1,
@@ -376,7 +378,7 @@ const resultsStyles = StyleSheet.create({
   progress: {
     position: 'absolute',
     backgroundColor: '#615FDB',
-    width: '100%',
+    width: '50%',
     height: '100%',
     top: 10,
     left: 10,
@@ -394,12 +396,52 @@ const resultsStyles = StyleSheet.create({
     color: '#615FDB',
     fontFamily: 'RobotoMono-Bold',
     textTransform: 'uppercase',
-    fontSize: 20,
-    marginRight: 15,
-    textShadowColor: '#fff',
-    elevation: 1,
-    textShadowOffset: { width: -1, height: 0 },
-    textShadowRadius: 10
+    fontSize: 35,
+    marginRight: 15
+  },
+  winnerContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8880FF',
+    borderColor: '#251F1F',
+    borderBottomWidth: 5,
+    borderLeftWidth: 5,
+    borderRightWidth: 5,
+    borderBottomLeftRadius: 19,
+    borderBottomRightRadius: 19,
+    padding: 15
+  },
+  winnerText: {
+    color: '#fff',
+    fontFamily: 'RobotoMono-Bold',
+    textTransform: 'uppercase',
+    fontSize: 29,
+  },
+  palm: {
+    position: 'absolute',
+    bottom: 0,
+    width: width
+  },
+  centerBlock: {
+    position: 'absolute',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    width: 120,
+    height: '77.5%',
+    borderColor: '#251F1F',
+    borderTopWidth: 5,
+    borderLeftWidth: 5,
+    borderRightWidth: 5,
+    bottom: 0
+  },
+  centerText: {
+    fontFamily: 'RobotoMono-Bold',
+    textTransform: 'uppercase'
+  },
+  arrowImage: {
+    
   }
 })
 

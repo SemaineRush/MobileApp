@@ -14,16 +14,13 @@ const getCandidates = (setCandidates, navigate) => {
             }
         }).then(json => {
             if (json.data.response.last_election.finished) {
-                navigate('Results')
-            } else {
-                api.get(`/elections/${json.data.response.last_election.id}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                }).then(res => {
-                    setCandidates(res.data.candidateElection)
+                navigate('Results', {
+                    election: json.data.response.last_election.candidates,
+                    winner: json.data.response.last_election.winner
                 })
             }
+
+            setCandidates(json.data.response.last_election.candidates)
         }).catch((err) => {
             console.log(err)
         })
@@ -46,13 +43,13 @@ const CandidatesList = props => {
                 <Text style={ styles.subtitle }>BDE 2020</Text>
             </View>
             <View style={ styles.bodyContainer }>
-                { candidates.map(candidate => {
-                    return <TouchableOpacity key={ candidate.id } style={ [styles.candidate, { backgroundColor: candidate.informations.color }] } onPress={ () => navigate('Candidate', { candidatePage: candidate.informations.component_candidate_mobile }) }>
+                { Object.values(candidates).map(candidate => {
+                    return <TouchableOpacity key={ candidate.idCandidate } style={ [styles.candidate, { backgroundColor: candidate.info_candidate.color }] } onPress={ () => navigate('Candidate', { candidatePage: candidate.info_candidate.component_candidate_mobile }) }>
                         <View style={ { paddingTop: 20, width: '60%' } }>
-                            <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.informations.firstname } { candidate.informations.lastname.toUpperCase() }</Text>
-                            <Text style={ { color: 'white' } }>{ candidate.informations.slogan }</Text>
+                            <Text style={ { color: 'white', fontWeight: 'bold' } }>{ candidate.info_candidate.firstname } { candidate.info_candidate.lastname.toUpperCase() }</Text>
+                            <Text style={ { color: 'white' } }>{ candidate.info_candidate.slogan }</Text>
                         </View>
-                        <Image source={ { uri: candidate.informations.image_url } } style={ { width: (width * 0.8) / 2.7, height: 150, alignSelf: 'flex-end' } } />
+                        <Image source={ { uri: candidate.info_candidate.image_url } } style={ { width: (width * 0.8) / 2.7, height: 150, alignSelf: 'flex-end' } } />
                     </TouchableOpacity>
                 }) }
             </View>
