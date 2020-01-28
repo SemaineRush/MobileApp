@@ -20,6 +20,7 @@ class BlueCandidate extends React.Component {
                     </View>
                 </View>
                 <View style={ [BackgroundColors.darkBlue, styles.program] }>
+                    <Image source={require('../../assets/SUP2020.png')} style={styles.sup2020} />
                     <Text style={ [Texts.h1, Colors.white] }>LE PROGRAMME</Text>
                     <View style={ [styles.redBar, BackgroundColors.red] }></View>
                     <Text style={ [Texts.info, Colors.white, { opacity: 0.5, marginBottom: 25 }] }>Notre promesse de campagne</Text>
@@ -152,11 +153,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         width: width * 0.8,
     },
+    sup2020: {
+        width: 30,
+        height: 200,
+        position: "absolute",
+        top: 0,
+        right: 0,
+        zIndex: 20,
+    },
     program: {
         paddingLeft: 30,
         paddingRight: 30,
         paddingTop: 50,
         paddingBottom: 50,
+        position: "relative"
     },
     redBar: {
         width: 50,
