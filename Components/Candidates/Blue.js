@@ -4,6 +4,7 @@ import { Texts, BackgroundColors, Colors } from '../styles/blueStyles';
 import { width } from '../styles/Styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { LinkButton } from '../Common/Button';
+import WebView from 'react-native-webview';
 
 class BlueCandidate extends React.Component {
     render() {
@@ -115,7 +116,11 @@ class BlueCandidate extends React.Component {
                     <LinkButton title="Tout voir" style={ { marginLeft: width * 0.7, marginTop: 30 } } />
                 </View>
                 <Image source={ require('../../assets/guiralMap.png') } style={ { width: width, height: width } } />
-                <Image source={ require('../../assets/guiralInterview.png') } style={ { width: width, height: width * 0.52 } } />
+                <WebView
+                    style={{flex:1, width: width, height: 300, zIndex: 25}}
+                    javaScriptEnabled={true}
+                    source={{uri: 'https://www.youtube.com/embed/9fwgC1C7hT4'}}
+                />
                 <View style={ [BackgroundColors.blue, styles.campaign] }>
                     <Text style={ [Texts.h1, Colors.white] }>Suivez notre campagne</Text>
                     <View style={ styles.social }>
