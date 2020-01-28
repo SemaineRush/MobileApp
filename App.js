@@ -14,6 +14,7 @@ import Vote from './Components/Votes/Vote';
 import Results from './Components/Votes/Results';
 import BlueCandidate from './Components/Candidates/Blue';
 import BlueResults from './Components/Candidates/BlueResults';
+import YellowResults from './Components/Candidates/YellowResults';
 import ComicResults from './Components/Candidates/ComicResults';
 
 const MainNavigator = createStackNavigator({
@@ -23,11 +24,12 @@ const MainNavigator = createStackNavigator({
   Office: { screen: Office },
   Candidate: { screen: Candidate },
   CandidatesList: { screen: CandidatesList },
+  Blue: { screen: BlueCandidate },
   Vote: { screen: Vote },
   Results: { screen: Results },
-  Blue: { screen: BlueCandidate },
   BlueResults: { screen: BlueResults },
   ComicResults: { screen: ComicResults },
+  YellowResults: { screen: YellowResults },
 }, {
   defaultNavigationOptions: {
     headerShown: false

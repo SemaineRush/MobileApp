@@ -145,10 +145,12 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const resultStyles = StyleSheet.create({
+export const resultsStyles = StyleSheet.create({
   container: {
     backgroundColor: '#FFD02A',
     flex: 1,
+    height: height,
+    width: width,
     alignItems: 'center',
   },
   header: {

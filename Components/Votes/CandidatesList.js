@@ -18,9 +18,9 @@ const getCandidates = (setCandidates, navigate) => {
                     election: json.data.response.last_election.candidates,
                     winner: json.data.response.last_election.winner
                 })
+            } else {
+                setCandidates(json.data.response.last_election.candidates)
             }
-
-            setCandidates(json.data.response.last_election.candidates)
         }).catch((err) => {
             console.log(err)
         })

@@ -41,7 +41,7 @@ const Percents = props => {
   </View>
 }
 
-const ComicResults = () => {
+const ComicResults = props => {
   return <ScrollView>
     <View style={ resultsStyles.view }>
       <View style={ resultsStyles.head }>
@@ -59,7 +59,7 @@ const ComicResults = () => {
           <Text style={ [resultsStyles.centerText, { fontSize: 29 }] }>Maire</Text>
           <Text style={ [resultsStyles.centerText, { fontSize: 32 }] }>2020</Text>
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
-          <Percents style={ { width: width * 0.9 } } name={ "vainqueur maëliss taraud" } percent={ 60 } />
+          <Percents style={ { width: width * 0.9 } } name={ "vainqueur maëliss taraud" } percent={ props.winner.percentage } />
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
         </View>
@@ -67,8 +67,7 @@ const ComicResults = () => {
     </View>
     <View style={ resultsStyles.footer }>
       <Text style={ resultsStyles.footerTitle }>AUTRES CANDIDATS :</Text>
-      <Percents name="arevichan" percent={ 20 } />
-      <Percents name="guiral" percent={ 13 } />
+      { props.candidates.map((e, i) => <Percents key={ i } name={ e.info_candidate.firstname } percent={ e.percentage } />) }
     </View>
   </ScrollView>
 }
