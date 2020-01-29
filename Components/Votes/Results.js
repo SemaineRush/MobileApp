@@ -22,15 +22,19 @@ const Results = props => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const others = []
-    const election = getParam('election')
-    const id = getParam('winner')
+    let others = []
+    let election = getParam('election')
+    let id = getParam('winner')
 
-    Object.values(election).map(candidate => {
-      if (candidate.idCandidate === id) {
-        setWinner(candidate)
-      } else {
-        others.push(candidate)
+    Object.keys(election).map(e => {
+      if (e == id) {
+        Object.values(election).map(i => {
+          if (election[e].idCandidate === i.idCandidate) {
+            setWinner(i)
+          } else {
+            others.push(i)
+          }
+        })
       }
     })
 

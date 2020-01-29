@@ -59,7 +59,7 @@ const ComicResults = props => {
           <Text style={ [resultsStyles.centerText, { fontSize: 29 }] }>Maire</Text>
           <Text style={ [resultsStyles.centerText, { fontSize: 32 }] }>2020</Text>
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
-          <Percents style={ { width: width * 0.9 } } name={ "vainqueur maëliss taraud" } percent={ props.winner.percentage } />
+          <Percents style={ { width: width * 0.9 } } name={ "vainqueur maëliss taraud" } percent={ Math.round(props.winner.percentage) } />
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
           <Image source={ require('./../../assets/Comic/arrow-down.png') } />
         </View>
@@ -67,7 +67,7 @@ const ComicResults = props => {
     </View>
     <View style={ resultsStyles.footer }>
       <Text style={ resultsStyles.footerTitle }>AUTRES CANDIDATS :</Text>
-      { props.candidates.map((e, i) => <Percents key={ i } name={ e.info_candidate.firstname } percent={ e.percentage } />) }
+      { props.candidates.map((e, i) => <Percents key={ i } name={ e.info_candidate.firstname } percent={ Math.round(e.percentage) } />) }
     </View>
   </ScrollView>
 }

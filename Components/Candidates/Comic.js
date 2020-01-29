@@ -50,105 +50,85 @@ const Program = props => <View style={ styles.programPart }>
 
 const Comic = props => {
 
-  return <View>
-    <ScrollView style={ styles.page }>
-      <View style={ styles.view }>
-        <Image style={ styles.pola } source={ require('./../../assets/Comic/pola-ombre.png') } />
-        <Text style={ styles.polaText }>Ensemble vers l’avenir</Text>
-        <View style={ [styles.headerContainer, { marginTop: -70 }] }>
-          <Image style={ styles.headerImage } source={ require('./../../assets/Comic/header.png') } />
-        </View>
+  return <ScrollView>
+    <View style={ styles.view }>
+      <Image style={ styles.pola } source={ require('./../../assets/Comic/pola-ombre.png') } />
+      <Text style={ styles.polaText }>Ensemble vers l’avenir</Text>
+      <View style={ [styles.headerContainer, { marginTop: -70 }] }>
+        <Image style={ styles.headerImage } source={ require('./../../assets/Comic/header.png') } />
+      </View>
 
-        <View style={ [BackgroundColors.white, styles.container] }>
-          <View style={ styles.squareRow }>
-            { squares.rowWhite.map((e, i) => <Square key={ i } color={ e } />) }
+      <View style={ [BackgroundColors.white, styles.container] }>
+        <View style={ styles.squareRow }>
+          { squares.rowWhite.map((e, i) => <Square key={ i } color={ e } />) }
+        </View>
+        <View style={ [styles.squareRow, { flex: 13 }] }>
+          <View style={ styles.squareColumn }>
+            { squares.columnLeft.map((e, i) => <Square key={ i } color={ e } />) }
           </View>
-          <View style={ [styles.squareRow, { flex: 13 }] }>
-            <View style={ styles.squareColumn }>
-              { squares.columnLeft.map((e, i) => <Square key={ i } color={ e } />) }
+          <View style={ [styles.squareColumn, { flex: 5 }] }>
+            <View style={ [styles.resumeContainer, { flex: 10 }] }>
+              <Text style={ styles.resumeText }>
+                Maêliss, c’est la joie de vivre alliée à l’audace; du sérieux couplé à des rires (beaucoup de rires); un esprit de leader qui n’abandonnera personne en cours de route.
+            </Text>
+              <Text style={ [styles.resumeText, { marginVertical: 60 }] }>
+                Maëliss commença avec une formation de pompière volontaire; elle est aujourd’hui cheffe scout; pourquoi pas maire de notre ville demain ?
+            </Text>
+              <Text style={ styles.resumeText }>
+                Altruiste, dynamique, drôle… Tant d’adjectifs pourraient servir sa cause.
+            </Text>
             </View>
-            <View style={ [styles.squareColumn, { flex: 5 }] }>
-              <View style={ [styles.resumeContainer, { flex: 10 }] }>
-                <Text style={ styles.resumeText }>
-                  Maêliss, c’est la joie de vivre alliée à l’audace; du sérieux couplé à des rires (beaucoup de rires); un esprit de leader qui n’abandonnera personne en cours de route.
+            <View style={ [styles.resumeContainer, { flex: 3 }] }>
+              <Text style={ styles.resumeText }>
+                Ne réfléchissez plus
             </Text>
-                <Text style={ [styles.resumeText, { marginVertical: 60 }] }>
-                  Maëliss commença avec une formation de pompière volontaire; elle est aujourd’hui cheffe scout; pourquoi pas maire de notre ville demain ?
+              <Text style={ [styles.resumeText, styles.resumeTextEmphasis] }>
+                Votez maëliss pour que sup’ s’agrandisse
             </Text>
-                <Text style={ styles.resumeText }>
-                  Altruiste, dynamique, drôle… Tant d’adjectifs pourraient servir sa cause.
-            </Text>
-              </View>
-              <View style={ [styles.resumeContainer, { flex: 3 }] }>
-                <Text style={ styles.resumeText }>
-                  Ne réfléchissez plus
-            </Text>
-                <Text style={ [styles.resumeText, styles.resumeTextEmphasis] }>
-                  Votez maëliss pour que sup’ s’agrandisse
-            </Text>
-              </View>
-            </View>
-            <View style={ styles.squareColumn }>
-              { squares.columnRight.map((e, i) => <Square key={ i } color={ e } />) }
             </View>
           </View>
-          <View style={ styles.squareRow }>
-            { squares.rowBottom.map((e, i) => <Square key={ i } color={ e } />) }
+          <View style={ styles.squareColumn }>
+            { squares.columnRight.map((e, i) => <Square key={ i } color={ e } />) }
           </View>
         </View>
-        <View style={ styles.videoContainer }>
-          <TouchableOpacity onPress={ () => Linking.openURL('https://www.youtube.com/watch?v=W2G9eqCNG8Y') }>
-            <Image style={ styles.videoLink } source={ require('./../../assets/Comic/fastAndCurious.png') } />
-          </TouchableOpacity>
-        </View>
-        <View style={ styles.programContainer }>
-          <Text style={ styles.programH1 }>Son programme</Text>
-          <Text style={ styles.programH2 }>Sa vocation</Text>
-          { program.map((e, i) => <Program key={ i } index={ i } text={ e } />) }
-          <Image style={ styles.arrow } source={ require('./../../assets/Comic/fleche-gauche.png') } />
-          <Text style={ styles.chooseText }>Faites le choix</Text>
-          <Text style={ styles.chooseName }>maËliss</Text>
-          <Image style={ styles.arrow } source={ require('./../../assets/Comic/fleche-droite.png') } />
-        </View>
-        <View style={ styles.footer }>
-          <Image style={ styles.mediaBubble } source={ require('./../../assets/Comic/bulle-bas.png') } />
-          <View style={ styles.mediaBubbleContainer }>
-            <Text style={ styles.mediaBubbleText }>Retrouvez Maëliss</Text>
-            <Text style={ [styles.mediaBubbleText, styles.mediaBubbleTextEmphasis] }>SUR LES RÉSEAUX</Text>
-          </View>
-          <View style={ styles.squareRow }>
-            { squares.rowWhite.map((e, i) => <Square key={ i } color={ e } />) }
-          </View>
-          <View style={ styles.socialMediaContainer }>
-            { socialMedia.map((e, i) => <TouchableOpacity key={ i } onPress={ () => null }>
-              <Image style={ i === 3 ? [styles.socialMediaIcon, styles.yt] : styles.socialMediaIcon } source={ e.icon } />
-            </TouchableOpacity>) }
-          </View>
-          <View style={ styles.squareRow }>
-            { squares.rowFooter.map((e, i) => <Square key={ i } color={ e } />) }
-          </View>
+        <View style={ styles.squareRow }>
+          { squares.rowBottom.map((e, i) => <Square key={ i } color={ e } />) }
         </View>
       </View>
-    </ScrollView>
-    <View style={ styles.voteContainer }>
-      <View>
-        <TouchableOpacity style={ styles.voteButton } onPress={ () => props.navigate('Vote') }>
-          <Text style={ styles.voteButtonText }>Votez !</Text>
+      <View style={ styles.videoContainer }>
+        <TouchableOpacity onPress={ () => Linking.openURL('https://www.youtube.com/watch?v=W2G9eqCNG8Y') }>
+          <Image style={ styles.videoLink } source={ require('./../../assets/Comic/fastAndCurious.png') } />
         </TouchableOpacity>
-        <View style={ styles.voteButtonShadow }>
-          <Text style={ styles.voteButtonText }>Votez !</Text>
-        </View>
       </View>
-      <View style={ styles.back }>
-        <TouchableOpacity style={ styles.backButton } onPress={ () => props.goBack() }>
-          <Text style={ styles.backButtonText }>retour</Text>
-        </TouchableOpacity>
-        <View style={ styles.backButtonShadow }>
-          <Text style={ styles.backButtonText }>retour</Text>
+      <View style={ styles.programContainer }>
+        <Text style={ styles.programH1 }>Son programme</Text>
+        <Text style={ styles.programH2 }>Sa vocation</Text>
+        { program.map((e, i) => <Program key={ i } index={ i } text={ e } />) }
+        <Image style={ styles.arrow } source={ require('./../../assets/Comic/fleche-gauche.png') } />
+        <Text style={ styles.chooseText }>Faites le choix</Text>
+        <Text style={ styles.chooseName }>maËliss</Text>
+        <Image style={ styles.arrow } source={ require('./../../assets/Comic/fleche-droite.png') } />
+      </View>
+      <View style={ styles.footer }>
+        <Image style={ styles.mediaBubble } source={ require('./../../assets/Comic/bulle-bas.png') } />
+        <View style={ styles.mediaBubbleContainer }>
+          <Text style={ styles.mediaBubbleText }>Retrouvez Maëliss</Text>
+          <Text style={ [styles.mediaBubbleText, styles.mediaBubbleTextEmphasis] }>SUR LES RÉSEAUX</Text>
+        </View>
+        <View style={ styles.squareRow }>
+          { squares.rowWhite.map((e, i) => <Square key={ i } color={ e } />) }
+        </View>
+        <View style={ styles.socialMediaContainer }>
+          { socialMedia.map((e, i) => <TouchableOpacity key={ i } onPress={ () => null }>
+            <Image style={ i === 3 ? [styles.socialMediaIcon, styles.yt] : styles.socialMediaIcon } source={ e.icon } />
+          </TouchableOpacity>) }
+        </View>
+        <View style={ styles.squareRow }>
+          { squares.rowFooter.map((e, i) => <Square key={ i } color={ e } />) }
         </View>
       </View>
     </View>
-  </View>
+  </ScrollView>
 }
 
 export default Comic

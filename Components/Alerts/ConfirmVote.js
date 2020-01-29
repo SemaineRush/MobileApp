@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Modal, Alert } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, Modal, Alert } from 'react-native';
 import { Texts, height, width, BackgroundColors } from '../styles/Styles';
 import { PrimaryButton } from '../Common/Button';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { api, getToken } from '../helpers/api'
 
@@ -25,11 +24,11 @@ class ConfirmVote extends React.Component {
                 let electionId = json.data.response.last_election.id
                 api.post(`/vote/${electionId}/${this.props.candidateId}`, {}, {
                     headers: {
-                      Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${token}`
                     }
                 })
-                .then(res => this.setState({ showNextAlert: true }))
-                .catch(err => {console.log(err.response); Alert.alert("Erreur", "Vous avez déjà voté", {text: 'OK', onPress: () => this.props.navigation.navigate("Vote")})})
+                    .then(res => this.setState({ showNextAlert: true }))
+                    .catch(err => { console.log(err.response); Alert.alert("Erreur", "Vous avez déjà voté", [{ text: 'OK', onPress: () => this.props.navigation.navigate("Vote") }]) })
             }).catch((err) => {
                 console.log(err)
             })

@@ -4,10 +4,9 @@ import { height, width } from './Styles';
 
 const styles = StyleSheet.create({
   wrap: {
-    flex: 1
-  },
-  page: {
-    height: height * 0.95
+    height: height,
+    width: width,
+    position: 'relative'
   },
   view: {
     position: 'relative',
@@ -243,72 +242,6 @@ const styles = StyleSheet.create({
   },
   yt: {
     width: width / 4
-  },
-  voteContainer: {
-    height: height * 0.1,
-    width: width,
-    backgroundColor: '#FE75B8',
-    borderWidth: 3,
-    borderColor: 'black',
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-start'
-  },
-  voteButton: {
-    position: 'relative',
-    margin: 5,
-    alignItems: 'center',
-    borderWidth: 4,
-    borderColor: 'black',
-    backgroundColor: 'white',
-    paddingVertical: height * 0.015,
-    paddingHorizontal: width / 8,
-    zIndex: 1
-  },
-  voteButtonShadow: {
-    position: 'absolute',
-    paddingVertical: height * 0.015,
-    paddingHorizontal: width / 8,
-    borderWidth: 4,
-    borderColor: 'black',
-    backgroundColor: 'black',
-    zIndex: 0,
-    top: 10,
-    left: 10
-  },
-  voteButtonText: {
-    fontFamily: 'RobotoMono-Bold',
-    fontSize: 18,
-  },
-  backButton: {
-    position: 'relative',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 4,
-    padding: 5,
-    borderColor: 'black',
-    backgroundColor: 'white',
-    zIndex: 1
-  },
-  backButtonShadow: {
-    position: 'absolute',
-    borderWidth: 4,
-    borderColor: 'black',
-    backgroundColor: 'black',
-    zIndex: 0,
-    padding: 5,
-    top: 3,
-    left: 3
-  },
-  backButtonText: {
-    fontFamily: 'RobotoMono-Bold',
-    fontSize: 18,
-  },
-  back: {
-    position: 'absolute',
-    left: 15,
-    top: (height * 0.1) / 5
   }
 })
 
@@ -441,7 +374,7 @@ const resultsStyles = StyleSheet.create({
     textTransform: 'uppercase'
   },
   arrowImage: {
-    
+
   }
 })
 

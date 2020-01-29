@@ -13,7 +13,7 @@ const getCandidates = (setCandidates, navigate) => {
                 Authorization: `Bearer ${token}`
             }
         }).then(json => {
-            if (json.data.response.last_election.finished) {
+            if (json.data.response.last_election.finished && json.data.response.last_election.winner !== null) {
                 navigate('Results', {
                     election: json.data.response.last_election.candidates,
                     winner: json.data.response.last_election.winner
